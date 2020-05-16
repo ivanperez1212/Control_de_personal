@@ -71,7 +71,7 @@ app.post("/registrar", (req, res) => {
     apellidos: body.apellidos,
     username:body.username,
     email: body.email,
-    contraseña: bcrypt.hashSync(body.contraseña, 10),
+    contrasena: bcrypt.hashSync(body.contrasena, 10),
     img: body.img
   });
   

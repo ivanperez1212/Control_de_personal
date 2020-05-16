@@ -25,7 +25,7 @@ let UsuarioSchema = new Schema({
     unique:true
 
   },
-  contraseña: {
+  contrasena: {
     type: String,
     required: [true, "Favor ingresar su contaseña"]
   },
