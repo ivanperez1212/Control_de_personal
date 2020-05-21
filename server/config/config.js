@@ -18,8 +18,8 @@ if (process.env.NODE_ENV === "dev") {
 
 process.env.URLDB = urlDB;
 
-//FIRMA DE JWT
-process.env.SEED = process.env.SEED || 'firma-super-secreta';
+//firma de JWT
+process.env.SEED = process.env.SEED || "firma-super-secreta";
 
-// EXPIRE TIME JWT
-process.env.CADUCIDAD_TOKEN = process.env.CADUCIDAD_TOKEN || '3h';
+//EXPIRE TIME JWT
+process.env.CAD_TOKEN = process.env.CAD_TOKEN || "3h";
