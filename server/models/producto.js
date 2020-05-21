@@ -37,12 +37,16 @@ let productoSchema = new Schema({
         type: String,
         required: [true, 'Por favor ingresa el alias']
     },
+    img: {
+        type: String,
+        default: 'noImage.jpeg'
+    },
     estatus: {
         type: Boolean,
         default: true
     }
-    
-    
+
+
 
 });
 
