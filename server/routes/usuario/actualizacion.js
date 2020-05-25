@@ -1,11 +1,12 @@
 const express = require("express");
 const _ = require("underscore");
+const bcrypt = require("bcrypt");
 const Usuario = require("../../models/usuario");
 const app = express();
 
 app.put("/actualizar/:id", (req, res) => {
     let id = req.params.id;
-    let body = _.pick(req.body, ["nombre", "apellidos", "contraseña", "telefono", "img"]);
+    let body = _.pick(req.body, ["nombre", "apellidos", "contrasena", "telefono", "img"]);
   
     Usuario.findByIdAndUpdate(
       id,
