@@ -36,6 +36,7 @@ app.post('/registrar', (req, res) => {
 });
 app.get("/obtener/:cdb", (req, res) => {
     let cdb = req.params.cdb;
+    
     Producto.find({ 'cdb': cdb }).exec((err, CDBDB) => {
         if (err) {
             return res.status(400).json({
@@ -43,6 +44,7 @@ app.get("/obtener/:cdb", (req, res) => {
                 err
             });
         }
+
         return res.status(200).json({
             ok:true,
             resp:CDBDB
@@ -52,6 +54,7 @@ app.get("/obtener/:cdb", (req, res) => {
 
 //Verificar que codigo de barras  no este en uso
 //new RegExp(username, 'i')
+
 app.get("/verificar/cdb/:cdb", (req, res) => {
     let cdb = req.params.cdb;
     let disponible = true
