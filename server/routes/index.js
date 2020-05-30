@@ -8,6 +8,7 @@ app.use(require('./usuario/login'));
 app.use("/usuario", require("./usuario/actualizacion"));
 app.use("/producto", require('./producto/producto'))
 app.use("/usuario", require("./usuario/resetpass"))
-app.use( require("./negocio/negocio"))
-app.use( require("./negocio/categoria"))
+app.use(require("./negocio/negocio"))
+app.use(require("./negocio/categoria"))
+app.use(require('./upload'));
 module.exports = app;
