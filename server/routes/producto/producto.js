@@ -15,7 +15,6 @@ app.post('/registrar', (req, res) => {
         nombre: body.nombre,
         cdb: body.cdb,
         precio: body.precio,
-        ubicacion: body.ubicacion,
         descripcion: body.descripcion,
         alias: body.alias,
         img: body.img,
@@ -36,7 +35,7 @@ app.post('/registrar', (req, res) => {
 });
 app.get("/obtener/:cdb", (req, res) => {
     let cdb = req.params.cdb;
-    
+
     Producto.find({ 'cdb': cdb }).exec((err, CDBDB) => {
         if (err) {
             return res.status(400).json({
@@ -46,8 +45,8 @@ app.get("/obtener/:cdb", (req, res) => {
         }
 
         return res.status(200).json({
-            ok:true,
-            resp:CDBDB
+            ok: true,
+            resp: CDBDB
         });
     });
 });
