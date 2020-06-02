@@ -25,10 +25,6 @@ let productoSchema = new Schema({
         type: String,
         required: [true, ' ingresa el precio']
     },
-    ubicacion: {
-        type: String,
-        required: [true, ' ingresa la ubicacion']
-    },
     descripcion: {
         type: String,
         required: [true, 'Por favor ingresa la descripcion']
