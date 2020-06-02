@@ -10,6 +10,10 @@ app.use("/producto", require('./producto/producto'))
 app.use("/usuario", require("./usuario/resetpass"))
 app.use(require("./negocio/negocio"))
 app.use(require("./negocio/categoria"))
+
+app.use(require('./upload'));
+
 app.use(require('./usuario/imagen'));
-app.use(require('./usuario/upload'));
+
+
 module.exports = app;
