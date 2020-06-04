@@ -1,6 +1,6 @@
 const express = require('express');
 const _ = require('underscore');
-const { verificatoken } = require('../../middlewares/autenticacion');
+///const { verificatoken } = require('../../middlewares/autenticacion');
 const Producto = require('../../models/producto');
 const app = express();
 
@@ -36,7 +36,7 @@ app.post('/registrar', (req, res) => {
 app.get("/obtener/:cdb", (req, res) => {
     let cdb = req.params.cdb;
 
-    Producto.find({ 'cdb': cdb }).exec((err, CDBDB) => {
+    Producto.find({$or:[{ 'cdb': cdb },{'nombre':  { $regex: '.*' + cdb + '.*' }}] },{}).exec((err, CDBDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,

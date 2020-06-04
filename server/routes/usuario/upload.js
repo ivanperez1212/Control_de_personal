@@ -1,5 +1,5 @@
 const express = require('express');
-const { verificatoken } = require('../middlewares/autenticacion');
+//const { verificatoken } = require('../middlewares/autenticacion');
 const fileupload = require('express-fileupload');
 const uniqid = require('uniqid');
 const path = require('path');
@@ -11,7 +11,7 @@ const Usuario = require('../../models/usuario');
 
 app.use(fileupload());
 
-app.put('/upload/:ruta/:id', [verificatoken], (req, res) => {
+app.put('/upload/:ruta/:id',  (req, res) => {
     let id = req.params.id;
     let ruta = req.params.ruta;
     let archivo = req.files.archivo;
