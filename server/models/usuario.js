@@ -38,7 +38,7 @@ let UsuarioSchema = new Schema({
     },
     puntos: {
         type: Number,
-        default: 0
+        default: 2
     },
     insignias: {
         type: Array,
@@ -51,7 +51,8 @@ let UsuarioSchema = new Schema({
     estatus: {
         type: Boolean,
         default: true
-    }
+    },
+
 });
 
 UsuarioSchema.plugin(uniquevalidator, {
