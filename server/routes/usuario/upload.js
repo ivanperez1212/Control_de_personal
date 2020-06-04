@@ -1,5 +1,5 @@
 const express = require('express');
-const { verificatoken } = require('../middlewares/autenticacion');
+const { verificatoken } = require('../../middlewares/autenticacion');
 const fileupload = require('express-fileupload');
 const uniqid = require('uniqid');
 const path = require('path');
