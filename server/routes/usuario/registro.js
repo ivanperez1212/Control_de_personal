@@ -73,6 +73,7 @@ app.post("/registrar", (req, res) => {
         contrasena: bcrypt.hashSync(body.contrasena, 10),
         img: body.img,
         telefono: body.telefono
+
     });
 
     usuario.save((err, usrDB) => {
