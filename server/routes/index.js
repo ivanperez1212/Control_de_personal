@@ -12,4 +12,5 @@ app.use(require("./negocio/negocio"))
 app.use(require("./negocio/categoria"))
 app.use(require('./usuario/imagen'));
 app.use(require('./usuario/upload'));
+app.use("/producto", require('./producto/actualizar'))
 module.exports = app;
