@@ -40,6 +40,11 @@ let UsuarioSchema = new Schema({
         type: Number,
         default: 2
     },
+    asistencia: {
+        type: Number,
+        default: 1
+
+    },
     insignias: {
         type: Array,
         default: null
@@ -52,6 +57,14 @@ let UsuarioSchema = new Schema({
         type: Boolean,
         default: true
     },
+    conexion: {
+        type: String
+
+    },
+    finRacha: {
+        type: String
+    }
+
 
 });
 
