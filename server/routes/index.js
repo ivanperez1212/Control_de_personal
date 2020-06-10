@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 
 app.use("/usuario", require("./usuario/registro"));
+app.use("/usuario", require("./usuario/buscar"));
 app.use(require('./usuario/login'));
 app.use("/usuario", require("./usuario/actualizacion"));
 app.use("/producto", require('./producto/producto'))
