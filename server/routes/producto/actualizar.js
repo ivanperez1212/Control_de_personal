@@ -1,11 +1,18 @@
 const express = require("express");
 const _ = require("underscore");
 const Producto = require("../../models/producto");
+var base64Img = require('base64-img');
+const uniqid = require('uniqid');
+const path = require('path')
 const app = express();
 
 app.put('/actualizarProducto/:id',(req, res)=>{
     let id = req.params.id;
+    let imgId = uniqid()
     let body = _.pick(req.body, ['nombre','marca','modelo','descripcion','img']);
+    base64Img.img(body.img, './uploads/products/', imgId, function(err, filepath) {
+        body.img = imgId + path.extname(filepath);
+    });
 
     Producto.findByIdAndUpdate(id, body,{new:true, runValidators: true, context: 'query'},(err, productoDB)=>{
         if (err) {

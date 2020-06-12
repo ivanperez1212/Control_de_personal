@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //parse formato a application/json
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '10mb', extended: true}));
 //archivo agrupador de indices
 app.use("/api", require("./routes/index"));
 //conector a la db
