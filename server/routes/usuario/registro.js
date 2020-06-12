@@ -1,10 +1,13 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const _ = require("underscore");
+var base64Img = require('base64-img');
+const uniqid = require('uniqid');
+const fs = require("fs")
+const path = require('path')
 const Usuario = require("../../models/usuario");
 const confirmEmail = require('../../../scripts/email/confirmacion')
 const app = express();
-
 app.get("/obtener", (req, res) => {
 
     Usuario.find().exec((err, usrDB) => {
@@ -65,6 +68,7 @@ app.get("/verificar/username/:username", (req, res) => {
 
 app.post("/registrar", (req, res) => {
     let body = req.body;
+    let imgId = uniqid()
     let usuario = new Usuario({
         nombre: body.nombre,
         apellidos: body.apellidos,
@@ -76,6 +80,15 @@ app.post("/registrar", (req, res) => {
 
     });
 
+
+    if (usuario.img != "../../../assets/iconos/user_add_21977.ico") { 
+    base64Img.img(usuario.img, './uploads/users/', imgId, (err, filepath) =>{
+        if (err) {
+            usuario.img = "noimage.jpg"
+        }
+        usuario.img = imgId + path.extname(filepath);
+    })
+    }
     usuario.save((err, usrDB) => {
         if (err) {
             return res.status(400).json({
@@ -83,7 +96,11 @@ app.post("/registrar", (req, res) => {
                 err
             });
         } else {
-            confirmEmail(usrDB._id, usrDB.email)
+            confirmEmail(usrDB._id, usrDB.email).then((data)=>{
+                console.log("Mensaje enviado")
+            }).catch((err)=>{
+                console.log("Email no existe")
+            })
             return res.status(200).json({
                 ok: true,
                 msg: `Se registro correctamente el usuario ${usuario.nombre}`,
@@ -92,73 +109,7 @@ app.post("/registrar", (req, res) => {
         }
     });
 });
-/*
-app.put("/actualizar/:id", (req, res) => {
-  let id = req.params.id;
-  let body = _.pick(req.body, ["nombre", "apellidos", "img"]);
 
-  Usuario.findByIdAndUpdate(
-    id,
-    body,
-    { new: true, runValidators: true, context: "query" },
-    (err, usrDB) => {
-      if (err) {
-        return res.status(400).json({
-          ok: false,
-          err
-        });
-      }
-      return res.status(200).json({
-        ok: true,
-        msg: `Usuario actualizado correctamente`,
-        cont: usrDB
-      });
-    }
-  );
-});
-
-app.delete("/eliminar/:id", (req, res) => {
-  let id = req.params.id;
-
-  Usuario.findByIdAndUpdate(
-    id,
-    { estatus: false },
-    { new: true, runValidators: true, context: "query" },
-    (err, usrDB) => {
-      if (err) {
-        return res.status(400).json({
-          ok: false,
-          err
-        });
-      }
-      return res.status(200).json({
-        ok: true,
-        msg: `Articulo eliminado correctamente`,
-        cont: usrDB
-      });
-    }
-  );
- });*/
-app.post('/img', (req, res) => {
-    let body = req.body;
-
-    let foto = new Usuario({
-        img: body.img
-
-    });
-    foto.save((err, pDB) => {
-        if (err) {
-            return res.status(400).json({
-                ok: false,
-                err
-            });
-        }
-        return res.status(200).json({
-            ok: true,
-            pDB
-        });
-    });
-});
 
 
 module.exports = app;
