@@ -9,10 +9,6 @@ let productoSchema = new Schema({
         type: String,
         required: [true, 'ingresa la marca']
     },
-    modelo: {
-        type: String,
-        required: [true, ' ingresa el modelo']
-    },
     nombre: {
         type: String,
         required: [true, ' ingresa el nombre']
@@ -40,6 +36,27 @@ let productoSchema = new Schema({
     estatus: {
         type: Boolean,
         default: true
+    },
+    calificacion: {
+        type: Number
+    },
+    departamento: {
+        type: String
+    },
+    seccion: {
+        type: String
+    },
+    producto: {
+        type: String
+    },
+    cantidad: {
+        type: String
+    },
+    contenido: {
+        type: String
+    },
+    elementos: {
+        type: String
     }
 
 
