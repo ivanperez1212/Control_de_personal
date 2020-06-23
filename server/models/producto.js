@@ -7,15 +7,12 @@ let Schema = mongoose.Schema;
 let productoSchema = new Schema({
   marca: {
     type: String,
-    required: [true, "ingresa la marca"],
   },
   modelo: {
     type: String,
-    required: [true, " ingresa el modelo"],
   },
   nombre: {
     type: String,
-    required: [true, " ingresa el nombre"],
   },
   cdb: {
     type: String,
@@ -40,7 +37,6 @@ let productoSchema = new Schema({
   },
   alias: {
     type: String,
-    required: [true, "Por favor ingresa el alias"],
   },
   img: {
     type: String,
@@ -49,6 +45,24 @@ let productoSchema = new Schema({
   estatus: {
     type: Boolean,
     default: true,
+  },
+  contenido: {
+    type: String,
+  },
+  elementos: {
+    type: String,
+  },
+  calificacion: {
+    type: Number,
+  },
+  departamento: {
+    type: String,
+  },
+  seccion: {
+    type: String,
+  },
+  producto: {
+    type: String,
   },
 });
 

@@ -9,14 +9,9 @@ app.post("/registrar", (req, res) => {
   let body = req.body;
 
   let producto = new Producto({
-    marca: body.marca,
-    modelo: body.modelo,
-    nombre: body.nombre,
     cdb: body.cdb,
     descripcion: body.descripcion,
-    alias: body.alias,
     img: body.img,
-    estatus: body.estatus,
   });
   producto.save((err, pDB) => {
     if (err) {
@@ -35,7 +30,7 @@ app.get("/obtener/:cdb", (req, res) => {
   let cdb = req.params.cdb;
 
   Producto.find(
-    { $or: [{ cdb: cdb }, { nombre: { $regex: ".*" + cdb + ".*" } }] },
+    { $or: [{ cdb: cdb }, { descripcion: { $regex: ".*" + cdb + ".*" } }] },
     {}
   )
     .populate("tiendas.negocio")
