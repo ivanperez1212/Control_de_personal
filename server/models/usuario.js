@@ -64,8 +64,8 @@ let UsuarioSchema = new Schema({
   carrito: [
     {
       required: false,
-      _id: 0,
       cantidad: { type: Number, default: 1 },
+      precio: { type: Number },
       negocio: {
         type: Schema.Types.ObjectId,
         ref: "Negocio",
