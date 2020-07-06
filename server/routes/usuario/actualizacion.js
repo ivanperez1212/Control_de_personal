@@ -1,6 +1,9 @@
 const express = require("express");
 const _ = require("underscore");
 const Usuario = require("../../models/usuario");
+const Negocio = require("../../models/negocio");
+const Producto = require("../../models/producto");
+
 const app = express();
 
 app.put("/actualizar/:id", (req, res) => {
