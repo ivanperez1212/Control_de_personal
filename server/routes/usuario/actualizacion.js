@@ -1,9 +1,9 @@
 const express = require("express");
 const _ = require("underscore");
 const Usuario = require("../../models/usuario");
+const bodyParser = require("body-parser");
 const Negocio = require("../../models/negocio");
 const Producto = require("../../models/producto");
-
 const app = express();
 
 app.put("/actualizar/:id", (req, res) => {
@@ -35,6 +35,7 @@ app.put("/actualizar/:id", (req, res) => {
     }
   );
 });
+
 app.put("/carrito/:idUsuario", (req, res) => {
   let id = req.params.idUsuario;
   let body = req.body;
@@ -127,4 +128,5 @@ app.put("/eliminarCarrito/:idUsuario", (req, res) => {
     }
   );
 });
+
 module.exports = app;
