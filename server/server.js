@@ -3,7 +3,6 @@ require("./config/config");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-var cors = require("cors");
 const app = express();
 //habilita CORS
 app.use((req, res, next) => {
