@@ -11,7 +11,7 @@ const app = express();
 
 app.post("/registrar", (req, res) => {
   let body = req.body;
-
+  let imgId = uniqid();
   let producto = new Producto({
     cdb: body.cdb,
     nombre: body.nombre,
