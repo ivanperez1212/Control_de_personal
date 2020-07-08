@@ -3,6 +3,10 @@ const _ = require("underscore");
 ///const { verificatoken } = require('../../middlewares/autenticacion');
 const Producto = require("../../models/producto");
 const negocio = require("../../models/negocio");
+var base64Img = require("base64-img");
+const uniqid = require("uniqid");
+const fs = require("fs");
+const path = require("path");
 const app = express();
 
 app.post("/registrar", (req, res) => {
@@ -14,7 +18,7 @@ app.post("/registrar", (req, res) => {
     descripcion: body.descripcion,
     img: body.img,
   });
-  if (producto.img != "../../../assets/iconos/user_add_21977.ico") {
+  if (producto.img != "../../../assets/iconos/userico") {
     base64Img.img(
       producto.img,
       "./uploads/producto/",
