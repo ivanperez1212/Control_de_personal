@@ -12,9 +12,22 @@ app.post("/registrar", (req, res) => {
     cdb: body.cdb,
     nombre: body.nombre,
     descripcion: body.descripcion,
-
     img: body.img,
   });
+  if (producto.img != "../../../assets/iconos/user_add_21977.ico") {
+    base64Img.img(
+      producto.img,
+      "./uploads/producto/",
+      imgId,
+      (err, filepath) => {
+        if (err) {
+          producto.img = "noimage.jpg";
+        } else {
+          producto.img = imgId + path.extname(filepath);
+        }
+      }
+    );
+  }
   producto.save((err, pDB) => {
     if (err) {
       return res.status(400).json({
