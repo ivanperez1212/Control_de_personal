@@ -69,7 +69,6 @@ app.get("/verificar/username/:username", (req, res) => {
 
 app.post("/registrar", (req, res) => {
   let body = req.body;
-  let imgId = uniqid();
   let usuario = new Usuario({
     nombre: body.nombre,
     apellidos: body.apellidos,
