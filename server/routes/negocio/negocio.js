@@ -25,8 +25,8 @@ app.post("/registrarNegocio", (req, res) => {
     imagenes: body.imagenes,
     estado: body.estado,
     cordenadas: {
-      longitude: 12.009,
-      latitude: 12.2345,
+      longitude: body.longitude,
+      latitude: body.latitude,
     },
   });
   negocio.save((err, negocioDB) => {
