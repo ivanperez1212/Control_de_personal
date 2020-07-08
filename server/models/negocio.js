@@ -33,7 +33,7 @@ let NegocioSchema = new Schema({
   },
   cordenadas: {
     _id: 0,
-    type: any,
+    type: Object,
   },
 });
 
