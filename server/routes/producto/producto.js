@@ -18,7 +18,9 @@ app.post("/registrar", (req, res) => {
     descripcion: body.descripcion,
     img: body.img,
   });
-  if (producto.img != "../../../assets/iconos/userico") {
+  if (producto.img == "../../../assets/iconos/userico") {
+    producto.img = "noimage.jpg";
+  } else {
     base64Img.img(
       producto.img,
       "./uploads/producto/",
