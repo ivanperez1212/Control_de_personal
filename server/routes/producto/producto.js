@@ -12,21 +12,20 @@ const app = express();
 app.post("/registrar", (req, res) => {
   let body = req.body;
   let imgId = uniqid();
-  let imagen;
-
-  base64Img.img(body.img, "./uploads/producto/", imgId, (err, filepath) => {
-    if (err) {
-      imagen = "noimage.jpg";
-      console.log(err);
-    }
-    imagen = imgId + path.extname(filepath);
-  });
 
   let producto = new Producto({
     cdb: body.cdb,
     nombre: body.nombre,
     descripcion: body.descripcion,
-    img: imagen,
+    img: body.img,
+  });
+
+  base64Img.img(producto.img, "./uploads/producto/", imgId, (err, filepath) => {
+    if (err) {
+      console.log(err);
+      producto.img = "noimage.jpg";
+    }
+    producto.img = imgId + path.extname(filepath);
   });
 
   producto.save((err, pDB) => {
