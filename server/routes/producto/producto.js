@@ -12,28 +12,26 @@ const app = express();
 app.post("/registrar", (req, res) => {
   let body = req.body;
   let imgId = uniqid();
+  let imagen;
+  if (body.img == "../../../assets/iconos/userico") {
+    imagen = "noimage.jpg";
+  } else {
+    base64Img.img(body.img, "./uploads/producto/", imgId, (err, filepath) => {
+      if (err) {
+        imagen = "noimage.jpg";
+      } else {
+        imagen = imgId + path.extname(filepath);
+      }
+    });
+  }
+
   let producto = new Producto({
     cdb: body.cdb,
     nombre: body.nombre,
     descripcion: body.descripcion,
-    img: body.img,
+    img: imagen,
   });
-  if (producto.img == "../../../assets/iconos/userico") {
-    producto.img = "noimage.jpg";
-  } else {
-    base64Img.img(
-      producto.img,
-      "./uploads/producto/",
-      imgId,
-      (err, filepath) => {
-        if (err) {
-          producto.img = "noimage.jpg";
-        } else {
-          producto.img = imgId + path.extname(filepath);
-        }
-      }
-    );
-  }
+
   producto.save((err, pDB) => {
     if (err) {
       return res.status(400).json({
