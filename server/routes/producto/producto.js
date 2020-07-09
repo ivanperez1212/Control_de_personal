@@ -17,6 +17,7 @@ app.post("/registrar", (req, res) => {
   base64Img.img(body.img, "./uploads/producto/", imgId, (err, filepath) => {
     if (err) {
       imagen = "noimage.jpg";
+      console.log(err);
     }
     imagen = imgId + path.extname(filepath);
   });
