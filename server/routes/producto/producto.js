@@ -13,17 +13,13 @@ app.post("/registrar", (req, res) => {
   let body = req.body;
   let imgId = uniqid();
   let imagen;
-  if (body.img == "../../../assets/iconos/userico") {
-    imagen = "noimage.jpg";
-  } else {
-    base64Img.img(body.img, "./uploads/producto/", imgId, (err, filepath) => {
-      if (err) {
-        imagen = "noimage.jpg";
-      } else {
-        imagen = imgId + path.extname(filepath);
-      }
-    });
-  }
+
+  base64Img.img(body.img, "./uploads/producto/", imgId, (err, filepath) => {
+    if (err) {
+      imagen = "noimage.jpg";
+    }
+    imagen = imgId + path.extname(filepath);
+  });
 
   let producto = new Producto({
     cdb: body.cdb,
