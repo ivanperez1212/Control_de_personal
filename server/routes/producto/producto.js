@@ -3,15 +3,12 @@ const _ = require("underscore");
 ///const { verificatoken } = require('../../middlewares/autenticacion');
 const Producto = require("../../models/producto");
 const negocio = require("../../models/negocio");
-var base64Img = require("base64-img");
-const uniqid = require("uniqid");
-const fs = require("fs");
-const path = require("path");
+const upload = require("../../../scripts/uploadImage/upload");
+
 const app = express();
 
 app.post("/registrar", (req, res) => {
   let body = req.body;
-  let imgId = uniqid();
 
   let producto = new Producto({
     cdb: body.cdb,
@@ -20,13 +17,7 @@ app.post("/registrar", (req, res) => {
     img: body.img,
   });
 
-  base64Img.img(producto.img, "./uploads/producto/", imgId, (err, filepath) => {
-    if (err) {
-      console.log(err);
-      producto.img = "noimage.jpg";
-    }
-    producto.img = imgId + path.extname(filepath);
-  });
+  producto.img = upload(producto.img, "producto");
 
   producto.save((err, pDB) => {
     if (err) {
