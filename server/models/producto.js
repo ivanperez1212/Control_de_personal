@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const uniquevalidator = require("mongoose-unique-validator");
+const Usuario = require("./usuario");
 
 const Negocio = require("./negocio");
 let Schema = mongoose.Schema;
@@ -49,9 +50,6 @@ let productoSchema = new Schema({
     elementos: {
         type: String,
     },
-    calificacion: {
-        type: Number,
-    },
     departamento: {
         type: String,
     },
@@ -61,6 +59,14 @@ let productoSchema = new Schema({
     producto: {
         type: String,
     },
+    comentarios:[{
+        required: false,
+        _idUsuario: {type: Schema.Types.ObjectId, ref:'Usuario'},
+        username: String,
+        texto: String,
+        calificacion: Number,
+        fecha: Date
+    }]
 });
 
 productoSchema.plugin(uniquevalidator, {
