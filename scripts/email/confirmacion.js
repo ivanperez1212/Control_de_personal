@@ -11,6 +11,7 @@ async function enviar(id,email) {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
  auth: {
+   //este correo fue prestado para poder hacer esta practica por que mi correo no podia ser configurado :)
         user: 'omar.wst13@gmail.com',
         pass: 'omar1360'
     }
@@ -18,9 +19,9 @@ async function enviar(id,email) {
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"ZAZA" <noReplay@zaza.com>', // sender address
+    from: '"Storeall" <noReplay@storeall.com>', // sender address
     to: `${email}`, // list of receivers
-    subject: "Correo de Confirmacion ZAZA", // Subject line
+    subject: "Correo de Confirmacion Storeall", // Subject line
     text: `http://localhost:3000/api/usuario/confirmar/${id}`, // plain text body
     html: `<b><a href="http://localhost:3000/api/usuario/confirmar/${id}">Click Aqui</a></b>` // html body
   });

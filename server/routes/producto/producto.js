@@ -14,6 +14,7 @@ app.post("/registrar", (req, res) => {
     cdb: body.cdb,
     nombre: body.nombre,
     descripcion: body.descripcion,
+    cantidad:body.cantidad,
     img: body.img,
   });
 

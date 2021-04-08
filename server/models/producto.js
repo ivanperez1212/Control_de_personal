@@ -44,7 +44,7 @@ let productoSchema = new Schema({
         type: Boolean,
         default: true,
     },
-    contenido: {
+    cantidad: {
         type: String,
     },
     elementos: {

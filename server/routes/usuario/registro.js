@@ -24,30 +24,7 @@ app.get("/obtener", (req, res) => {
     });
   });
 });
-//manda correo electronico de confirmacion
-app.get("/confirmar/:id", (req, res) => {
-  let id = req.params.id;
-  Usuario.findByIdAndUpdate(
-    id,
-    { emailConfirmado: true },
-    { new: true, runValidators: true, context: "query" },
-    (err, usrDB) => {
-      if (err) {
-        return res.status(400).json({
-          ok: false,
-          err,
-        });
-      }
-      return res.status(200).json({
-        ok: true,
-        msg: `Usuario confirmado correctamente`,
-        cont: usrDB,
-      });
-    }
-  );
-});
-//Verificar que username no este en uso
-//new RegExp(username, 'i')
+
 app.get("/verificar/username/:username", (req, res) => {
   let username = req.params.username;
   let disponible = true;
@@ -74,10 +51,12 @@ app.post("/registrar", (req, res) => {
     apellidos: body.apellidos,
     username: body.username,
     email: body.email,
+  
     contrasena: bcrypt.hashSync(body.contrasena, 10),
     img: body.img,
     telefono: body.telefono,
   });
+  
 
   usuario.save((err, usrDB) => {
     if (err) {
