@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
 const userSchema = new Schema({
   nombre:{
     type: String,
@@ -108,13 +107,14 @@ const userSchema = new Schema({
     type: Boolean,
     default: true
   },
-  idimage:{
-    type:String,
-    required: false
+  fileUrl:{
+    type: String,
+    required: false,
+    
     
   }  
 }, {
     timestamps: true
   });
 
-module.exports = userSchema;
+module.exports = mongoose.model("User",userSchema);
