@@ -2,20 +2,21 @@ const User = require('./auth.dao');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const SECRET_KEY = 'secretkey123456';
+const _ = require("underscore");
 
 
+exports.createUser =  (req, res, next) => {
 
-
-exports.createUser = (req, res, next) => {
   const body = req.body;
   const newUser = {
    
-     nombre: body.nombre,
+    nombre: body.nombre,
+    apellidos:body.apellidos,
     curp: body.curp, 
     nsegurosocial: body.nsegurosocial,
     rfc: body.rfc, 
     domicilio:body.domicilio,
-    fechadeentrada:body.fechadeentrada, 
+    fechadeentrada:body.fechadeentrada,   
     fechadenacimiento:body.fechadenacimiento, 
     telefono:body.telefono, 
     telefonoadicional:body.telefonoadicional,
@@ -26,30 +27,34 @@ exports.createUser = (req, res, next) => {
     talladepantalon:body.talladepantalon,
     pensionado:body.pensionado, 
     niveldeescolaridad:body.niveldeescolaridad,
-    rol:body.rol,
-    contrasena: bcrypt.hashSync(body.contrasena)
+    contrasena: bcrypt.hashSync(body.contrasena),
+    
    
  
  }
   
 
   User.create(newUser, (err, user) => {
-    if (err && err.code === 11000) return res.status(409).send('Email already exists');
-    if (err) return res.status(500).send('Server error');
+    
+    if (err) return res.status(500).send('Server error' , err);
+    
     const expiresIn = 24 * 60 * 60;
     const accessToken = jwt.sign({ id: user.id },
       SECRET_KEY, {
         expiresIn: expiresIn
       });
     const dataUser = {
+      id: user.id,
       nombre: user.nombre,
       correoelectronico: user.correoelectronico,
       rol: user.rol,
       accessToken: accessToken,
-      expiresIn: expiresIn
+      expiresIn: expiresIn,
+      idimage: user.idimage
     }
     // response 
     res.send({ dataUser });
+    
   });
 }
 
