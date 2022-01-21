@@ -121,7 +121,7 @@ exports.loginUser = (req, res, next) => {
 
     if (!user) {
       // email does not exist
-      res.status(409).send({ message: 'Something is wrong1' });
+      res.status(409).send({ message: 'Something is wrong1', err });
     } else {
       const resultPassword = bcrypt.compareSync(userData.contrasena, user.contrasena);
       if (resultPassword) {
@@ -136,10 +136,10 @@ exports.loginUser = (req, res, next) => {
           accessToken: accessToken,
           expiresIn: expiresIn
         }
-        res.send({ dataUser });
+        res.send({ dataUser } );
       } else {
         // password wrong
-        res.status(409).send({ message: 'Something is wrong2' });
+        res.status(409).send({ message: 'Something is wrong2', err });
       }
     }
   });

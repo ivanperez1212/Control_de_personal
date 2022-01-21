@@ -3,25 +3,18 @@ const image = require("../models/Userandimg");
 const _ = require("underscore");
 const app = express();
 
-app.get('/prueba/:id', (req, res) => {
-   let id =  req.params.id
+app.get('/consulta', (req, res) => {
+  
 
-     
-
-    image.findById(id)
+    image.find()
         .exec((err, user) => {
-            if (err) {
-                return res.status(400).json({
-                    ok: false,
-                    err
-                });
-            }
-            return res.status(200).json({
-                ok: true,
-               user
-            })
+            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+           
+        res.status(200).send( { user })
         });
 });
+
 
 
 
