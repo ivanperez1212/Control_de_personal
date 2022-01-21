@@ -1,7 +1,11 @@
 /* jshint esversion: 8 */
 
+//multer host de imagenes
+ let host
+
+
 //PUERTO
-process.env.PORT = process.env.PORT || 3000;
+process.env.PORT = process.env.PORT || 3001;
 
 //entorno
 process.env.NODE_ENV = process.env.NODE_ENV || "dev";
@@ -14,5 +18,8 @@ if (process.env.NODE_ENV === "dev") {
 
 } 
 
+ 
 process.env.URLDB = urlDB;
+
+process.env.APP_HOST = host
 
