@@ -146,10 +146,9 @@ exports.loginUser = (req, res, next) => {
 }
 
 
-exports.deleteUser = (req, res, next) => {
+exports.deleteUser = (req, res) => {
   
-  const body = req.body;
-  const idUsuario = '61ce80352c8cfac021086155'
+  const idUsuario = req.params.id
   
 
   User.findByIdAndUpdate(idUsuario,{
@@ -167,8 +166,6 @@ exports.deleteUser = (req, res, next) => {
     res.send({ dataUser });
   })
 }
-
-
 
 
 
