@@ -3,10 +3,10 @@ const image = require("../models/Userandimg");
 const _ = require("underscore");
 const app = express();
 
-app.get('/consulta', (req, res) => {
-  
+app.get('/consulta/:id', (req, res) => {
+    const id = req.params.id
 
-    image.find()
+    image.findById(id)
         .exec((err, user) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
@@ -15,6 +15,19 @@ app.get('/consulta', (req, res) => {
         });
 });
 
+app.get('/consulta', (req, res) => {
+  
+
+    image.find({$or:[
+        { 'activo': true}
+    ]})
+        .exec((err, user) => {
+            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+           
+        res.status(200).send( { user })
+        });
+});
 
 
 

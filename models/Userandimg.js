@@ -98,11 +98,6 @@ const userSchema = new Schema({
     required: false,
     trim: true
   },
-  fotografia: {
-    type: String,
-    required: false,
-    trim: true
-  },
   activo:{
     type: Boolean,
     default: true
