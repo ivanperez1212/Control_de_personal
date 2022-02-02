@@ -47,4 +47,20 @@ app.put('/image/:iduser',  (req, res)  => {
      
     });
 });
+app.put('/actualizarimg/:id',  (req, res)  => {
+    let user = req.params.id;
+    let body = req.body
+
+
+ image.findByIdAndUpdate(user, {
+     fileUrl: body.url
+     
+ }, (err, user) => {
+        if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+       
+        res.status(200).send( {client: user })
+     
+    });
+});
 module.exports = app;
