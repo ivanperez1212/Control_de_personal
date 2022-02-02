@@ -50,7 +50,8 @@ exports.createUser =  (req, res, next) => {
       rol: user.rol,
       accessToken: accessToken,
       expiresIn: expiresIn,
-      idimage: user.idimage
+      idimage: user.idimage,
+      fechadeentrada:user.fechadeentrada
     }
     // response 
     res.send({ dataUser });
@@ -60,51 +61,67 @@ exports.createUser =  (req, res, next) => {
 
 exports.updateUser = (req, res, next) => {
   
-  const body = req.body;
-  const idUsuario = '61ce80352c8cfac021086155'
+  const idUsuario = req.params.id
+ 
+  let body = _.pick(req.body, [
+    'nombre',
+    'apellidos',
+    'curp',
+    'nsegurosocial',
+    'rfc',
+    'domicilio',
+    'telefono',
+    'telefonoadicional',
+    'creditodeInfonavit',
+    'estadocivil',
+    'correoelectronico',
+    'talladeplayera',
+    'talladepantalon',
+    'pensionado',
+    'niveldeescolaridad',
+    'rol'
+
+  ])
+ 
   
 
-  User.findByIdAndUpdate(idUsuario,{
-    nombre: body.nombre,
-    curp: body.curp, 
-    nsegurosocial: body.nsegurosocial,
-    rfc: body.rfc, 
-    domicilio:body.domicilio,
-    fechadeentrada:body.fechadeentrada, 
-    fechadenacimiento:body.fechadenacimiento, 
-    telefono:body.telefono, 
-    telefonoadicional:body.telefonoadicional,
-    creditodeInfonavit:body.creditodeInfonavit, 
-    estadocivil:body.estadocivil, 
-    talladeplayera:body.talladeplayera, 
-    talladepantalon:body.talladepantalon,
-    pensionado:body.pensionado, 
-    niveldeescolaridad:body.niveldeescolaridad,
-    rol:body.rol
-
-  },(err,user)=>{
+  User.findByIdAndUpdate(idUsuario, body ,{ new: true, runValidators: true, context: 'query' },(err,user)=>{
     if (err) return res.status(500).send('Server error');
-    
-    const dataUser = {
-      nombre: user.nombre,
-    curp: user.curp, 
-    nsegurosocial: user.nsegurosocial,
-    rfc: user.rfc, 
-    domicilio:user.domicilio,
-    fechadeentrada:user.fechadeentrada, 
-    fechadenacimiento:user.fechadenacimiento, 
-    telefono:user.telefono, 
-    telefonoadicional:user.telefonoadicional,
-    creditodeInfonavit:user.creditodeInfonavit, 
-    estadocivil:user.estadocivil, 
-    talladeplayera:user.talladeplayera, 
-    talladepantalon:user.talladepantalon,
-    pensionado:user.pensionado, 
-    niveldeescolaridad:user.niveldeescolaridad,
-    rol:user.rol
-    }
-    // response 
-    res.send({ dataUser });
+
+     User.findOneAndUpdate(idUsuario,{
+       
+     }, (err, user) => {
+      if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+      
+
+      const dataUser = {
+        nombre: user.nombre,
+        apellidos: user.apellidos,
+        curp: user.curp, 
+        nsegurosocial: user.nsegurosocial,
+        rfc: user.rfc, 
+        domicilio:user.domicilio,
+        fechadeentrada:user.fechadeentrada, 
+        fechadenacimiento:user.fechadenacimiento, 
+        telefono:user.telefono, 
+        telefonoadicional:user.telefonoadicional,
+        creditodeInfonavit:user.creditodeInfonavit, 
+        estadocivil:user.estadocivil, 
+        correoelectronico: user.correoelectronico,
+        talladeplayera:user.talladeplayera, 
+        talladepantalon:user.talladepantalon,
+        pensionado:user.pensionado, 
+        niveldeescolaridad:user.niveldeescolaridad,
+        rol:user.rol,
+        contrasena: user.contrasena,
+        fileUrl: user.fileUrl
+        }
+        // response 
+        res.send({ dataUser });
+     }
+      
+      )
+
   })
 }
 
@@ -168,6 +185,45 @@ exports.deleteUser = (req, res) => {
 }
 
 
+exports.obtenerUser = (req, res) => {
+  
+  const idUsuario = req.params.id
+  
+
+  User.findById(idUsuario,{
+   
+  },(err,user)=>{
+    if (err) return res.status(500).send('Server error');
+    
+   
+ 
+    const dataUser = {
+        nombre: user.nombre,
+        apellidos: user.apellidos,
+        curp: user.curp, 
+        nsegurosocial: user.nsegurosocial,
+        rfc: user.rfc, 
+        domicilio:user.domicilio,
+        fechadeentrada:user.datePattern, 
+        fechadenacimiento:user.fechadenacimiento, 
+        telefono:user.telefono, 
+        telefonoadicional:user.telefonoadicional,
+        creditodeInfonavit:user.creditodeInfonavit, 
+        estadocivil:user.estadocivil, 
+        correoelectronico: user.correoelectronico,
+        talladeplayera:user.talladeplayera, 
+        talladepantalon:user.talladepantalon,
+        pensionado:user.pensionado, 
+        niveldeescolaridad:user.niveldeescolaridad,
+        rol:user.rol,
+        contrasena: user.contrasena,
+        fileUrl: user.fileUrl
+    
+    }
+    // response 
+    res.send({ user });
+  })
+}
 
 
 

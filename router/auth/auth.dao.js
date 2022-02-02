@@ -16,6 +16,12 @@ authSchema.statics = {
   login: function (query, cb) {
     this.find(query, cb)
   },
+
+  obtener: function (query, cb) {
+    this.find(query, cb)
+  },
+
+  
   
 }
 

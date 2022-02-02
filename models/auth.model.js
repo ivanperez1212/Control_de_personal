@@ -4,53 +4,53 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   nombre:{
     type: String,
-    required: true,
+    required: false,
     trim: true
   },
   apellidos:{
     type: String,
-    required: true,
+    required: false,
     trim: true
   },
   curp:{
     type: String,
-    required: true,
+    required: false,
     trim: true,
    
   } ,
   nsegurosocial:{
     type: String,
-    required: true,
+    required: false,
     trim: true
   } ,
   rfc:{
     type: String,
-    required: true,
+    required: false,
     trim: true
   } ,
   domicilio:{
     type: String,
-    required: true,
+    required: false,
     trim: true
   } ,
   fechadeentrada:{
     type: Date,
-    required: true,
+    required: false,
     trim: true
   },
   fechadenacimiento:{
     type: Date,
-    required: true,
+    required: false,
     trim: true
   } ,
   telefono:{
-    type: Number,
-    required: true,
+    type: String,
+    required: false,
     trim: true
   } ,
   telefonoadicional:{
-    type: Number,
-    required: true,
+    type: String,
+    required: false,
     trim: true
   },
   creditodeInfonavit:{
@@ -60,7 +60,7 @@ const userSchema = new Schema({
   } ,
   estadocivil:{
     type: String,
-    required: true,
+    required: false,
     trim: true
   } ,
   correoelectronico:{
@@ -70,22 +70,22 @@ const userSchema = new Schema({
   } ,
   talladeplayera:{
     type: String,
-    required: true,
+    required: false,
     trim: true
   } ,
   talladepantalon:{
     type: String,
-    required: true,
+    required: false,
     trim: true
   } ,
   pensionado:{
     type: String,
-    required: true,
+    required: false,
     trim: true
   },
   niveldeescolaridad:{
     type: String,
-    required: true,
+    required: false,
     trim: true
   },
   rol:{
