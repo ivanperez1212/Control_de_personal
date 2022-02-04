@@ -3,7 +3,7 @@ const image = require("../models/Userandimg");
 const _ = require("underscore");
 const { constant } = require("underscore");
 const app = express();
-
+// este es para el perfil
 app.get('/consulta/:id', (req, res) => {
     const id = req.params.id
 
@@ -13,7 +13,7 @@ app.get('/consulta/:id', (req, res) => {
         res.status(200).send( { user })
         });
 });
-
+// este es para que muestre el el home
 app.get('/consulta', (req, res) => {
     image.find({$or:[
         { 'activo': true}
@@ -34,7 +34,7 @@ app.get('/buscar/:search', (req, res) => {
             res.status(200).send( { user })
         });
 });
-
+// agrege la imagen al usuario
 app.put('/image/:iduser',  (req, res)  => {
     let user = req.params.iduser;
     let body = req.body
@@ -47,6 +47,7 @@ app.put('/image/:iduser',  (req, res)  => {
      
     });
 });
+// actualize la imagen del usuario
 app.put('/actualizarimg/:id',  (req, res)  => {
     let user = req.params.id;
     let body = req.body
