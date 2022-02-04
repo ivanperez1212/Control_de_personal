@@ -2,7 +2,9 @@ const User = require('./auth.dao');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const SECRET_KEY = 'secretkey123456';
+const SECRET_KEYRESET = 'secretkey123456QWE';
 const _ = require("underscore");
+const transporter = require('../../config/mailer');
 
 
 exports.createUser =  (req, res, next) => {
@@ -59,6 +61,133 @@ exports.createUser =  (req, res, next) => {
   });
 }
 
+exports.olvidasteContraseña =  (req, res, next) => {
+
+  const body = req.body;
+
+  const newUser = {
+    correoelectronico: body.correoelectronico
+ }
+ 
+// mandas a buscar el correo 
+ User.findOne( { correoelectronico: newUser.correoelectronico},  (err, user) => {
+
+  if (err) return res.status(500).send('Server error!');
+// en caso de que no lo mande pedirlo
+  if(!(newUser.correoelectronico)){
+    return res.status(400).send( {message: 'Correo is required '})
+  }
+// si no existe el correo
+ if(!user){
+  return res.status(400).send({ message:'check your email that be right'});
+ }
+ 
+
+ const message = 'check your email for a link to resent your password';
+
+ let emailStatus = 'OK';
+ 
+console.log(user._id)
+// creas un token con las siguientes cosas 
+     const token = jwt.sign({ id:user._id, correoelectronico: user.correoelectronico}, SECRET_KEYRESET, { expiresIn: '10m'})
+   //  console.log('token:',token)
+    verificationLink = `http://localhost:3001/api/olvidastecontraseña/${token}`;
+    // este es para usar el id para agregarle el token en la base de datos
+   const dataUser= {
+      id: user.id
+    }
+   try {
+ //TODO : SendEmail
+     // send mail with defined transport object
+    transporter.sendMail({
+     from: '"Petición de cambio de contraseña para Protexum" <ivanperez1l40@gmail.com>', // sender address
+      to: user.correoelectronico, // list of receivers
+      subject: "olvidar contraseña", // Subject line
+     text: `Hola ${user.nombre}${user.apellidos} ` , // plain text body
+       html:` <b>Hemos recibido una solicitud para restablecer tu contraseña, da clic en el siguiente botón y sigue las instruccione</b> 
+      <a href="${verificationLink}" > ${verificationLink} </a>`,  // html body
+     });
+   }catch(err){
+    emailStatus = err
+    return res.status(400).send( {message: 'Something goes wrong'})
+   }
+    
+   
+   
+     // aqui se agrega el token en la base de datos
+     User.findByIdAndUpdate(dataUser.id, {resetToken: token} ,{ new: true, runValidators: true, context: 'query' }, (err, userT) =>{
+      if (err) return res.status(500).send('Server error');
+
+      if (!userT) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+      res.send( { message, info: emailStatus, verificationLink});
+     })
+    
+    
+      
+     
+      
+      
+ });
+
+
+ 
+}
+
+exports.createcontraseña =  (req, res, next) => {
+
+  const body = req.body;
+
+  const newUser = {
+    contrasena: bcrypt.hashSync(body.contrasena)
+ }
+ // para agregarla a los header
+ const resetToken = req.headers.reset;
+ //es para verificar el token desde el front 
+ jwtPayload = jwt.verify(resetToken, SECRET_KEYRESET );
+ // es para buscar el token en la base de datos 
+
+ User.findOne( {resetToken},(err, user) => {
+
+
+  if (err) return res.status(500).send('Server error!');
+// en caso de que no lo mande pedirlo
+  if(!(resetToken && newUser.contrasena)){
+   return res.status(400).send( { message: 'All the fields are required'});
+  }
+// si no existe el correo
+ if(!user){
+  return res.status(400).send({ message:'check your email that be right'});
+ }
+
+
+// de la  busqueda anterior saco el id para hacer la busqueda para actualizar la contrasena
+ const dataUser= {
+  id: user.id
+}
+// es para cambiar la contraseña
+ User.findByIdAndUpdate(dataUser.id, newUser ,{ new: true, runValidators: true, context: 'query' }, (err, userT) =>{
+  if (err)  return res.status(400).send( {message: 'something goes wrong'} )
+// respuesta correcta 
+  return res.send( {message: 'password changed'})
+ })
+
+
+
+ 
+
+  
+
+})
+ 
+
+ 
+
+
+
+}
+
+
 exports.updateUser = (req, res, next) => {
   
   const idUsuario = req.params.id
@@ -82,16 +211,11 @@ exports.updateUser = (req, res, next) => {
     'rol'
 
   ])
- 
-  
 
   User.findByIdAndUpdate(idUsuario, body ,{ new: true, runValidators: true, context: 'query' },(err,user)=>{
     if (err) return res.status(500).send('Server error');
 
-     User.findOneAndUpdate(idUsuario,{
-       
-     }, (err, user) => {
-      if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+    if (!user) res.status(500).send( {message:`error al actualizar ${err} `} )
       
 
       const dataUser = {
@@ -118,9 +242,9 @@ exports.updateUser = (req, res, next) => {
         }
         // response 
         res.send({ dataUser });
-     }
+     
       
-      )
+      
 
   })
 }
@@ -197,29 +321,6 @@ exports.obtenerUser = (req, res) => {
     
    
  
-    const dataUser = {
-        nombre: user.nombre,
-        apellidos: user.apellidos,
-        curp: user.curp, 
-        nsegurosocial: user.nsegurosocial,
-        rfc: user.rfc, 
-        domicilio:user.domicilio,
-        fechadeentrada:user.datePattern, 
-        fechadenacimiento:user.fechadenacimiento, 
-        telefono:user.telefono, 
-        telefonoadicional:user.telefonoadicional,
-        creditodeInfonavit:user.creditodeInfonavit, 
-        estadocivil:user.estadocivil, 
-        correoelectronico: user.correoelectronico,
-        talladeplayera:user.talladeplayera, 
-        talladepantalon:user.talladepantalon,
-        pensionado:user.pensionado, 
-        niveldeescolaridad:user.niveldeescolaridad,
-        rol:user.rol,
-        contrasena: user.contrasena,
-        fileUrl: user.fileUrl
-    
-    }
     // response 
     res.send({ user });
   })
