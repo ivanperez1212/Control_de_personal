@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const SECRET_KEY = 'secretkey123456';
 const SECRET_KEYRESET = 'secretkey123456QWE';
 const _ = require("underscore");
-const transporter = require('../../config/mailer');
+// const transporter = require('../../config/mailer');
 
 
 exports.createUser =  (req, res, next) => {
