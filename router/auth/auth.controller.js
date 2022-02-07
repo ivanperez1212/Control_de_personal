@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const SECRET_KEY = 'secretkey123456';
 const SECRET_KEYRESET = 'secretkey123456QWE';
 const _ = require("underscore");
-const transporter = require('../../config/mailer');
+// const transporter = require('../../config/mailer');
 
 
 exports.createUser =  (req, res, next) => {
@@ -29,12 +29,9 @@ exports.createUser =  (req, res, next) => {
     talladepantalon:body.talladepantalon,
     pensionado:body.pensionado, 
     niveldeescolaridad:body.niveldeescolaridad,
+    rol:body.rol,
     contrasena: bcrypt.hashSync(body.contrasena),
-    
-   
- 
  }
-  
 
   User.create(newUser, (err, user) => {
     
@@ -99,14 +96,14 @@ console.log(user._id)
    try {
  //TODO : SendEmail
      // send mail with defined transport object
-    transporter.sendMail({
-     from: '"Petición de cambio de contraseña para Protexum" <ivanperez1l40@gmail.com>', // sender address
-      to: user.correoelectronico, // list of receivers
-      subject: "olvidar contraseña", // Subject line
-     text: `Hola ${user.nombre}${user.apellidos} ` , // plain text body
-       html:` <b>Hemos recibido una solicitud para restablecer tu contraseña, da clic en el siguiente botón y sigue las instruccione</b> 
-      <a href="${verificationLink}" > ${verificationLink} </a>`,  // html body
-     });
+    //  transporter.sendMail({
+    //   from: '"Petición de cambio de contraseña para Protexum" <ivanperez1l40@gmail.com>', // sender address
+    //   to: user.correoelectronico, // list of receivers
+    //   subject: "olvidar contraseña", // Subject line
+    //   text: `Hola ${user.nombre}${user.apellidos} ` , // plain text body
+    //   html:` <b>Hemos recibido una solicitud para restablecer tu contraseña, da clic en el siguiente botón y sigue las instruccione</b> 
+    //   <a href="${verificationLink}" > ${verificationLink} </a>`,  // html body
+    // });
    }catch(err){
     emailStatus = err
     return res.status(400).send( {message: 'Something goes wrong'})
@@ -209,8 +206,12 @@ exports.updateUser = (req, res, next) => {
     'pensionado',
     'niveldeescolaridad',
     'rol'
+  
+    
 
   ])
+ 
+  
 
   User.findByIdAndUpdate(idUsuario, body ,{ new: true, runValidators: true, context: 'query' },(err,user)=>{
     if (err) return res.status(500).send('Server error');
@@ -325,6 +326,8 @@ exports.obtenerUser = (req, res) => {
     res.send({ user });
   })
 }
+
+
 
 
 

@@ -20,7 +20,13 @@ authSchema.statics = {
   obtener: function (query, cb) {
     this.find(query, cb)
   },
-
+  olvidastecontraseña: function (query, cb) {
+    this.find(query, cb)
+  },
+  createcontraseña:  function (query, cb) {
+    this.find(query, cb)
+  },
+ 
   
   
 }
