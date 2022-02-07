@@ -107,9 +107,14 @@ const userSchema = new Schema({
     type:String,
     required: false
     
-  }  
+  },
+  resetToken:{
+    type: String,
+    required: false
+
+  },
 }, {
     timestamps: true
-  });
+  })
 
 module.exports = userSchema;

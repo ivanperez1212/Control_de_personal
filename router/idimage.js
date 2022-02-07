@@ -1,26 +1,66 @@
 const express = require("express");
 const image = require("../models/Userandimg");
+const Client = require("../models/Client")
 const _ = require("underscore");
-const { constant } = require("underscore");
 const app = express();
-// este es para el perfil
+// este se usa para metodos de consulta a la base de datos
+
+
+// me trae la info de un usuario en especifico
 app.get('/consulta/:id', (req, res) => {
     const id = req.params.id
 
     image.findById(id)
         .exec((err, user) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+           
         res.status(200).send( { user })
         });
 });
-// este es para que muestre el el home
+// me trae la info de los usuarios
 app.get('/consulta', (req, res) => {
+  
+
     image.find({$or:[
         { 'activo': true}
     ]})
         .exec((err, user) => {
-            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )   
+            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+           
         res.status(200).send( { user })
+        });
+});
+
+
+// me trae la info de un cliente en especifico
+app.get('/consultaclients/:id', (req, res) => {
+    const id = req.params.id
+
+    Client.findById(id)
+        .exec((err, client) => {
+            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+           
+        res.status(200).send( { client })
+        });
+});
+
+
+
+// me trae la info de los usuarios
+app.get('/consultaclients', (req, res) => {
+  
+
+    Client.find({$or:[
+        { 'activo': true}
+    ]})
+        .exec((err, client) => {
+            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+           
+        res.status(200).send( { client })
         });
 });
 
@@ -34,20 +74,24 @@ app.get('/buscar/:search', (req, res) => {
             res.status(200).send( { user })
         });
 });
-// agrege la imagen al usuario
+
 app.put('/image/:iduser',  (req, res)  => {
     let user = req.params.iduser;
     let body = req.body
-    console.log(req.body)
+
+
  image.findByIdAndUpdate(user, {
-     fileUrl: body.url 
- }, (err, empDB) => {
+     fileUrl: body.url
+     
+ }, (err, user) => {
         if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
-        res.status(200).send( {product: empDB })
+
+       
+        res.status(200).send( {client: user })
      
     });
 });
-// actualize la imagen del usuario
+
 app.put('/actualizarimg/:id',  (req, res)  => {
     let user = req.params.id;
     let body = req.body
