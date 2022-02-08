@@ -34,7 +34,7 @@ exports.createClients =  (req, res, next) => {
         id:client.id,
         nombre:client.nombre,
         correoelectronico:client.correoelectronico,
- 
+        fechadefacturacion: client.fechadefacturacion
   
       }
       // response 
@@ -48,7 +48,7 @@ exports.createClients =  (req, res, next) => {
   }
 
 
-  exports.updateClients = (req, res, next) => {
+exports.updateClients = (req, res, next) => {
   
     const idclient = req.params.id
    
@@ -80,7 +80,7 @@ exports.createClients =  (req, res, next) => {
       if (!client) res.status(500).send( {message:`error al actualizar ${err} `} )
         
   
-        const dataUser = {
+        const dataClient = {
           nombre:client.nombre,
           rfc:client.rfc, 
           correoelectronico:client.correoelectronico, 
@@ -101,7 +101,7 @@ exports.createClients =  (req, res, next) => {
           comentarios:client.comentarios
           }
           // response 
-          res.send({ dataUser });
+          res.send({ dataClient });
        
         
         
@@ -128,5 +128,23 @@ exports.deleteClients = (req, res) => {
     }
     // response 
     res.send({ dataClient });
+  })
+}
+
+
+exports.obtenerClients = (req, res) => {
+  
+  const idclient = req.params.id
+  
+
+  Clients.findById(idclient,{
+   
+  },(err,client)=>{
+    if (err) return res.status(500).send('Server error');
+    
+   
+ 
+    // response 
+    res.send({ client });
   })
 }
