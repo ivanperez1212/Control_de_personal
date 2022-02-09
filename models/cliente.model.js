@@ -79,7 +79,7 @@ const clienteSchema =  new Schema ({
         trim: true
     },
     fechadefacturacion:{
-        type: Date,
+        type: String,
         required: false,
         trim: true
     },

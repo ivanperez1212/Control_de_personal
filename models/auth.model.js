@@ -34,12 +34,12 @@ const userSchema = new Schema({
     trim: true
   } ,
   fechadeentrada:{
-    type: Date,
+    type: String,
     required: false,
     trim: true
   },
   fechadenacimiento:{
-    type: Date,
+    type: String,
     required: false,
     trim: true
   } ,
