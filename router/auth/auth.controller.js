@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const SECRET_KEY = 'secretkey123456';
 const SECRET_KEYRESET = 'secretkey123456QWE';
 const _ = require("underscore");
-// const transporter = require('../../config/mailer');
+ const transporter = require('../../config/mailer');
 
 
 exports.createUser =  (req, res, next) => {
@@ -86,9 +86,11 @@ exports.olvidasteContraseña =  (req, res, next) => {
  
 console.log(user._id)
 // creas un token con las siguientes cosas 
-     const token = jwt.sign({ id:user._id, correoelectronico: user.correoelectronico}, SECRET_KEYRESET, { expiresIn: '10m'})
+     const token = jwt.sign({ id:user._id, correoelectronico: user.correoelectronico}, SECRET_KEYRESET, { expiresIn: '20m'})
    //  console.log('token:',token)
-    verificationLink = `http://localhost:3001/api/olvidastecontraseña/${token}`;
+    verificationLink = `http://localhost:8100/recuperarcontrasena/${token}`;
+
+    
     // este es para usar el id para agregarle el token en la base de datos
    const dataUser= {
       id: user.id
@@ -96,14 +98,15 @@ console.log(user._id)
    try {
  //TODO : SendEmail
      // send mail with defined transport object
-    //  transporter.sendMail({
-    //   from: '"Petición de cambio de contraseña para Protexum" <ivanperez1l40@gmail.com>', // sender address
-    //   to: user.correoelectronico, // list of receivers
-    //   subject: "olvidar contraseña", // Subject line
-    //   text: `Hola ${user.nombre}${user.apellidos} ` , // plain text body
-    //   html:` <b>Hemos recibido una solicitud para restablecer tu contraseña, da clic en el siguiente botón y sigue las instruccione</b> 
-    //   <a href="${verificationLink}" > ${verificationLink} </a>`,  // html body
-    // });
+     transporter.sendMail({
+      from: '"Petición de cambio de contraseña para Protexum" <ivanperez1l40@gmail.com>', // sender address
+      to: user.correoelectronico, // list of receivers
+      subject: "olvidar contraseña", // Subject line
+      html:`<b>Hola ${user.nombre} ${user.apellidos}</b>
+      <br>
+       <b>Hemos recibido una solicitud para restablecer tu contraseña, da clic en el siguiente botón y sigue las instruccione</b> 
+      <a href="${verificationLink}" > ${verificationLink} </a>`,  // html body
+    });
    }catch(err){
     emailStatus = err
     return res.status(400).send( {message: 'Something goes wrong'})
@@ -117,7 +120,14 @@ console.log(user._id)
 
       if (!userT) res.status(500).send( {message:`error al actualizar ${err} `} )
 
-      res.send( { message, info: emailStatus, verificationLink});
+     const dataUser = {
+        resetToken: token,
+        message,
+        info: emailStatus,
+        verificationLink
+      }
+
+      res.send( { dataUser});
      })
     
     
@@ -140,6 +150,7 @@ exports.createcontraseña =  (req, res, next) => {
  }
  // para agregarla a los header
  const resetToken = req.headers.reset;
+ console.log(resetToken)
  //es para verificar el token desde el front 
  jwtPayload = jwt.verify(resetToken, SECRET_KEYRESET );
  // es para buscar el token en la base de datos 
