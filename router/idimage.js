@@ -1,7 +1,9 @@
 const express = require("express");
 const image = require("../models/Userandimg");
-const Client = require("../models/Client")
+const Client = require("../models/Client");
+const Cservice = require("../models/Service");
 const _ = require("underscore");
+const Service = require("../models/Service");
 const app = express();
 // este se usa para metodos de consulta a la base de datos
 
@@ -64,6 +66,37 @@ app.get('/consultaclients', (req, res) => {
         });
 });
 
+// me trae la info de los servicios
+app.get('/consultaservice', (req, res) => {
+  
+
+    Cservice.find({$or:[
+        { 'activo': true}
+    ]})
+        .exec((err, service) => {
+            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+           
+        res.status(200).send( { service })
+        });
+});
+
+// me trae la info de un service en especifico
+app.get('/consultaservice/:id', (req, res) => {
+    const id = req.params.id
+
+    Cservice.findById(id)
+        .exec((err, service) => {
+            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+           
+        res.status(200).send( { service })
+        });
+});
+
+
+
+// es el buscador de usuarios
 app.get('/buscar/:search', (req, res) => {
     const search = req.params.search
     const query = { $text : { $search: '.*'+ search +'.*', $caseSensitive:false } };
@@ -74,7 +107,7 @@ app.get('/buscar/:search', (req, res) => {
             res.status(200).send( { user })
         });
 });
-
+// es para agregar la imagen al usuario
 app.put('/image/:iduser',  (req, res)  => {
     let user = req.params.iduser;
     let body = req.body
@@ -91,7 +124,7 @@ app.put('/image/:iduser',  (req, res)  => {
      
     });
 });
-
+// es para actualizar la imagen de usuario
 app.put('/actualizarimg/:id',  (req, res)  => {
     let user = req.params.id;
     let body = req.body

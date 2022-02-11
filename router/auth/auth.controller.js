@@ -86,7 +86,7 @@ exports.olvidasteContraseña =  (req, res, next) => {
  
 console.log(user._id)
 // creas un token con las siguientes cosas 
-     const token = jwt.sign({ id:user._id, correoelectronico: user.correoelectronico}, SECRET_KEYRESET, { expiresIn: '20m'})
+     const token = jwt.sign({ id:user._id, correoelectronico: user.correoelectronico}, SECRET_KEYRESET, { expiresIn: '10m'})
    //  console.log('token:',token)
     verificationLink = `http://localhost:8100/recuperarcontrasena/${token}`;
 
@@ -142,19 +142,20 @@ console.log(user._id)
 }
 
 exports.createcontraseña =  (req, res, next) => {
-
+  const token = req.params.token;
   const body = req.body;
-
+console.log(body)
   const newUser = {
     contrasena: bcrypt.hashSync(body.contrasena)
  }
+
  // para agregarla a los header
- const resetToken = req.headers.reset;
+ const resetToken = token;
  console.log(resetToken)
  //es para verificar el token desde el front 
  jwtPayload = jwt.verify(resetToken, SECRET_KEYRESET );
  // es para buscar el token en la base de datos 
-
+ 
  User.findOne( {resetToken},(err, user) => {
 
 
