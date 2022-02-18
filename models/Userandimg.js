@@ -66,17 +66,78 @@ const userSchema = new Schema({
     type: String,
     required: false,
     trim: true
-  } ,
-  talladeplayera:{
+  } , // c de cantidad
+  cdeplayera:{
+    type: String,
+    required: false,
+    trim: true
+  } , // d de descripcion
+  ddeplayera:{
     type: String,
     required: false,
     trim: true
   } ,
-  talladepantalon:{
+
+  cdepantalon:{
     type: String,
     required: false,
     trim: true
   } ,
+  ddepantalon:{
+    type: String,
+    required: false,
+    trim: true
+  } ,
+  cdebotas:{
+    type: String,
+    required: false,
+    trim: true
+  } ,
+  ddebotas:{
+    type: String,
+    required: false,
+    trim: true
+  } ,
+  cdecachucha:{
+    type: String,
+    required: false,
+    trim: true
+  } ,
+  ddecachucha:{
+    type: String,
+    required: false,
+    trim: true
+  } ,
+  cdechamarra:{
+    type: String,
+    required: false,
+    trim: true
+  } ,
+  ddechamarra:{
+    type: String,
+    required: false,
+    trim: true
+  } ,
+  cdechaleco:{
+    type: String,
+    required: false,
+    trim: true
+  } ,
+  ddechaleco:{
+    type: String,
+    required: false,
+    trim: true
+  } ,
+  cdelentes:{
+    type: String,
+    required: false,
+    trim: true
+  } ,
+  ddelentes:{
+    type: String,
+    required: false,
+    trim: true
+  },
   pensionado:{
     type: String,
     required: false,
@@ -107,7 +168,12 @@ const userSchema = new Schema({
     required: false,
     
     
-  }  
+  },
+  idequip:{
+    type: String,
+    required: false,
+    trim: true
+}  
 }, {
     timestamps: true
   });

@@ -13,11 +13,6 @@ const clienteSchema =  new Schema ({
         required: false,
         trim: true
     },
-    correoelectronico:{
-        type: String,
-        required: false,
-        trim: true
-    },
     servicio:{
         type: String,
         required: false,
@@ -52,7 +47,13 @@ const clienteSchema =  new Schema ({
         type: String,
         required: false,
         trim: true
-    },// datos de facturacion
+    },
+    correoelectronicofacturacion:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    // datos de facturacion
     rfcdefacturacion:{
         type: String,
         required: false,
@@ -93,6 +94,11 @@ const clienteSchema =  new Schema ({
         required: false,
         trim: true
     },
+    servicios:[{
+        required: false,
+        type: Schema.Types.ObjectId,
+        ref: 'services.model'
+    }],
     activo:{
         type: Boolean,
         default: true

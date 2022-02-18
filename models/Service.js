@@ -46,20 +46,27 @@ const serviceSchema = new Schema({
         required: false,
         trim: true
       },
-      cantidaddeguardiasporturno:{
+      turno12x12:{
         type: Number,
         required: false,
         trim: true
       },
-      cantidaddeguardiasporturnonoche:{
+      turno24x24:{
         type: Number,
         required: false,
         trim: true
+      },
+      cliente:{
+        type: Schema.Types.ObjectId,
+        ref: 'Cliente',
+        required: false,
+       
       },
       activo:{
         type: Boolean,
         default: true
       },
+     
     
 }, {
     timestamps: true

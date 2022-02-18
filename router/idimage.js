@@ -1,7 +1,7 @@
 const express = require("express");
 const image = require("../models/Userandimg");
 const Client = require("../models/Client");
-const Cservice = require("../models/Service");
+const Equip = require("../models/equip")
 const _ = require("underscore");
 const Service = require("../models/Service");
 const app = express();
@@ -40,7 +40,7 @@ app.get('/consulta', (req, res) => {
 app.get('/consultaclients/:id', (req, res) => {
     const id = req.params.id
 
-    Client.findById(id)
+    Client.findById(id).populate("servicios")
         .exec((err, client) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
@@ -70,7 +70,7 @@ app.get('/consultaclients', (req, res) => {
 app.get('/consultaservice', (req, res) => {
   
 
-    Cservice.find({$or:[
+    Service.find({$or:[
         { 'activo': true}
     ]})
         .exec((err, service) => {
@@ -85,7 +85,7 @@ app.get('/consultaservice', (req, res) => {
 app.get('/consultaservice/:id', (req, res) => {
     const id = req.params.id
 
-    Cservice.findById(id)
+    Service.findById(id)
         .exec((err, service) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
@@ -141,4 +141,46 @@ app.put('/actualizarimg/:id',  (req, res)  => {
      
     });
 });
+// para agregar el id de usuario a equipo
+app.put('/idClient/:id',  (req, res)  => {
+    let idequip = req.params.id;
+    let body = req.body
+
+
+ Equip.findByIdAndUpdate(idequip, {
+    idClient: body.idClient
+     
+ }, (err, equip) => {
+        if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+       
+        res.status(200).send( { equip })
+     
+    });
+});
+
+// agregar el id de servicio a cliente
+app.put('/idClienteservicio/:id',  (req, res)  => {
+    let idClient = req.params.id;
+    let body = req.body
+   
+    Client.findByIdAndUpdate(
+        idClient,
+        {
+          $push: {
+            servicios:body.servicios
+          },
+        },
+        { new: true, runValidators: true, context: "query" },
+        (err, proDB) => {
+          if (err) {
+            return res.status(400).send({message: 'some goes wrong', err})
+          }
+          return res.status(200).send({proDB})
+        }
+      );
+
+});
+
+
 module.exports = app;

@@ -1,50 +1,76 @@
 const Services = require('./service.dao');
+const Client = require('../client/client.dao')
 const _ = require("underscore");
-exports.createService =  (req, res, next) => {
+exports.createService = async (req, res, next) => {
 
-    const body = req.body;
-    const newService = {
-      nombre:body.nombre,
-      contactodelservicio:body.contactodelservicio, 
-      telefono:body.telefono, 
-      telefonoprotexum:body.telefonoprotexum,
-      tipodeservicio:body.tipodeservicio, 
-      domicilio:body.domicilio,
-      jefedeservicio:body.jefedeservicio,
-      cantidaddeguardiasporturno:body.cantidaddeguardiasporturno,
-      cantidaddeguardiasporturnonoche:body.cantidaddeguardiasporturnonoche
-    
-   }
-    
-  
-    Services.create(newService, (err, service) => {
-      
-      if (err) return res.status(500).send('Server error' , err);
-      
-     
-      const dataService = {
-        id:service.id,
-        nombre:service.nombre,
-        contactodelservicio:service.contactodelservicio,
-        telefono:service.telefono,
-        telefonoprotexum:service.telefonoprotexum,
-        tipodeservicio:service.tipodeservicio,
-        domicilio:service.domicilio,
-        jefedeservicio:service.jefedeservicio,
-        cantidaddeguardiasporturno:service.cantidaddeguardiasporturno,
-        cantidaddeguardiasporturnonoche:service.cantidaddeguardiasporturnonoche
-    
-  
-      }
-      // response 
-      res.send({ dataService });
-      
-    });
+   const idClient = req.params.id
 
-    
-    
 
+
+   
+   const body = req.body;
+   const newService = {
+     nombre:body.nombre,
+     contactodelservicio:body.contactodelservicio, 
+     telefono:body.telefono, 
+     telefonoprotexum:body.telefonoprotexum,
+     tipodeservicio:body.tipodeservicio, 
+     domicilio:body.domicilio,
+     jefedeservicio:body.jefedeservicio,
+     turno12x12:body.turno12x12,
+     turno24x24:body.turno24x24,
+     // asignar al usuario como dueño del carro
+     cliente: idClient
   }
+   
+  
+ 
+  
+   Services.create(newService, (err, service) => {
+     
+     if (err) return res.status(500).send('Server error' , err);
+      
+    
+     const dataService = {
+      id:service.id,
+      nombre:service.nombre,
+      contactodelservicio:service.contactodelservicio, 
+      telefono:service.telefono, 
+      telefonoprotexum:service.telefonoprotexum,
+      tipodeservicio:service.tipodeservicio, 
+      domicilio:service.domicilio,
+      jefedeservicio:service.jefedeservicio,
+      turno12x12:service.turno12x12,
+      turno24x24:service.turno24x24,
+      cliente: service.cliente
+   
+ 
+     }
+
+  //  Client.findByIdAndUpdate(
+  //     idClient,
+  //     {
+  //       $push: {
+  //         servicios: {
+  //           dataService
+  //         },
+  //       },
+  //     },
+  //     { new: true, runValidators: true, context: "query" },
+  //     (err, proDB) => {
+  //       if (err) {
+  //         return res.status(400).send(err)
+  //       }
+  //       return res.status(200).send(proDB)
+  //     }
+  //   );
+    
+     // response 
+     res.send({ dataService });
+     
+   });
+
+   }
 
 
 exports.updateService = (req, res, next) => {
@@ -59,8 +85,8 @@ exports.updateService = (req, res, next) => {
     'tipodeservicio',
     'domicilio',
     'jefedeservicio',
-    'cantidaddeguardiasporturno',
-    'cantidaddeguardiasporturnonoche'
+    'turno12x12',
+    'turno24x24'
     ])
   
     Services.findByIdAndUpdate(idservice, body ,{ new: true, runValidators: true, context: 'query' },(err,service)=>{
@@ -77,8 +103,8 @@ exports.updateService = (req, res, next) => {
           tipodeservicio:service.tipodeservicio, 
           domicilio:service.domicilio,
           jefedeservicio:service.jefedeservicio,
-          cantidaddeguardiasporturno:service.cantidaddeguardiasporturno,
-          cantidaddeguardiasporturnonoche:service.cantidaddeguardiasporturnonoche
+          turno12x12:service.turno12x12,
+          turno24x24:service.turno24x24
 
           }
           // response 
@@ -91,6 +117,7 @@ exports.updateService = (req, res, next) => {
   }
 
   
+
 exports.deleteService = (req, res) => {
   
   const idservice = req.params.id

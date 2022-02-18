@@ -1,44 +1,59 @@
-const Clients = require('./client.dao');
+const Equips = require('./equip.dao');
 const _ = require("underscore");
-exports.createClients =  (req, res, next) => {
+
+
+exports.createEquips =  (req, res, next) => {
 
     const body = req.body;
-    const newClients = {
-      nombre:body.nombre,
-      rfc:body.rfc, 
-      servicio:body.servicio,
-      domicilio:body.domicilio, 
-      telefono:body.telefono,
-      cdnombre:body.cdnombre,
-      cdtelefono:body.cdtelefono,
-      cdcorreoelectronicoempresa:body.cdcorreoelectronicoempresa,
-      cdcorreoelectronico:body.cdcorreoelectronico,
-      correoelectronicofacturacion:body.correoelectronicofacturacion, 
-      rfcdefacturacion:body.rfcdefacturacion,
-      domciliofiscal:body.domciliofiscal,
-      cfdi:body.cfdi,
-      formadepago:body.formadepago,
-      metododepago:body.metododepago,
-      fechadefacturacion:body.fechadefacturacion,
-      tipodecredito:body.tipodecredito,
-      comentarios:body.comentarios
+    const newEquips = {
+      celular:body.celular,
+      dcelular:body.dcelular,
+      radio:body.radio,
+      dradio:body.dradio,  
+      lamparas:body.lamparas,
+      dlamparas:body.dlamparas, 
+      fornitura:body.fornitura,
+      dfornitura:body.dfornitura,
+      tonfa:body.tonfa,
+      dtonfa:body.dtonfa, 
+      gas:body.gas,
+      dgas:body.dgas,
+      teaser:body.teaser,
+      dteaser:body.dteaser,
+      impermeable:body.impermeable,
+      dimpermeable:body.dimpermeable,
+      espejoderevision:body.espejoderevision,
+      despejoderevision:body.despejoderevision,
+      detectordemetales:body.detectordemetales,
+      ddetectordemetales:body.ddetectordemetales,
+      mazo:body.mazo,
+      dmazo:body.dmazo,
+      botasimpermeables:body.botasimpermeables,
+      dbotasimpermeables:body.dbotasimpermeables,
+      bicicleta:body.bicicleta,
+      dbicicleta:body.dbicicleta,
+      patrulla:body.patrulla,
+      dpatrulla:body.dpatrulla,
+      rondinero:body.rondinero,
+      drondinero:body.drondinero
+      
    }
     
   
-    Clients.create(newClients, (err, client) => {
+    Equips.create(newEquips, (err, equip) => {
       
       if (err) return res.status(500).send('Server error' , err);
       
      
-      const dataClient = {
-        id:client.id,
-        nombre:client.nombre,
-        correoelectronico:client.correoelectronico,
-        fechadefacturacion: client.fechadefacturacion
+      const dataEquip = {
+        id:equip.id,
+        celular:equip.celular,
+        radio:equip.radio,
+        lamparas:equip.lamparas
   
       }
       // response 
-      res.send({ dataClient });
+      res.send({ dataEquip });
       
     });
 
@@ -48,7 +63,7 @@ exports.createClients =  (req, res, next) => {
   }
 
 
-exports.updateClients = (req, res, next) => {
+exports.updateEquips = (req, res, next) => {
   
     const idclient = req.params.id
    
@@ -110,7 +125,7 @@ exports.updateClients = (req, res, next) => {
   }
 
   
-exports.deleteClients = (req, res) => {
+exports.deleteEquips = (req, res) => {
   
   const idclient = req.params.id
   
@@ -132,7 +147,7 @@ exports.deleteClients = (req, res) => {
 }
 
 
-exports.obtenerClients = (req, res) => {
+exports.obtenerEquips = (req, res) => {
   
   const idclient = req.params.id
   

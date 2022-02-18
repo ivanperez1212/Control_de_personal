@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const serviceSchema = require('../../models/services.model');
+const equipSchema = require('../../models/equipment.model');
 
-serviceSchema.statics = {
+equipSchema.statics = {
   create: function (data, cb) {
-    const service = new this(data);
-    service.save(cb);
+    const client = new this(data);
+    client.save(cb);
   },
   update: function (query,cb){
     client.find(query,cb)
@@ -16,10 +16,9 @@ serviceSchema.statics = {
     this.find(query, cb)
   },
  
- 
   
   
 }
 
-const serviceModel = mongoose.model('Services', serviceSchema);
-module.exports = serviceModel;
+const clientModel = mongoose.model('Equips', equipSchema);
+module.exports = clientModel;
