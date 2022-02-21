@@ -155,7 +155,13 @@ const equipSchema = new Schema({
         type: String,
         required: false,
         trim: true
-      },
+    },
+    idservice:{
+        type: Schema.Types.ObjectId,
+        ref: 'Service',
+        required: false,
+       
+    },
     activo:{
         type: Boolean,
         default: true

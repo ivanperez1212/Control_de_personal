@@ -40,12 +40,16 @@ app.get('/consulta', (req, res) => {
 app.get('/consultaclients/:id', (req, res) => {
     const id = req.params.id
 
-    Client.findById(id).populate("servicios")
+
+    Client.findById(id).populate({path: 'servicios', populate: { path:'equiporecibido'}})
         .exec((err, client) => {
-            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+            if (err)  return res.status(500).send( {message:`error al actualizar ${err} `} )
 
            
-        res.status(200).send( { client })
+          return res.status(200).send( { client })
+         
+      
+        
         });
 });
 

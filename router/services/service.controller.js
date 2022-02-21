@@ -1,13 +1,9 @@
 const Services = require('./service.dao');
-const Client = require('../client/client.dao')
+
 const _ = require("underscore");
 exports.createService = async (req, res, next) => {
 
    const idClient = req.params.id
-
-
-
-   
    const body = req.body;
    const newService = {
      nombre:body.nombre,
@@ -17,15 +13,23 @@ exports.createService = async (req, res, next) => {
      tipodeservicio:body.tipodeservicio, 
      domicilio:body.domicilio,
      jefedeservicio:body.jefedeservicio,
-     turno12x12:body.turno12x12,
-     turno24x24:body.turno24x24,
+     lturnodoce:body.lturnodoce,
+     lturnovienti:body.lturnovienti,
+     mturnodoce:body.mturnodoce,
+     mturnovienti:body.mturnovienti,
+     miturnodoce:body.miturnodoce,
+     miturnovienti:body.miturnovienti,
+     jturnodoce:body.jturnodoce,
+     jturnovienti:body.jturnovienti,
+     vturnodoce:body.vturnodoce,
+     vturnovienti:body.vturnovienti,
+     sturnodoce:body.sturnodoce,
+     sturnovienti:body.sturnovienti,
+     dturnodoce:body.dturnodoce,
+     dturnovienti:body.dturnovienti,
      // asignar al usuario como dueño del carro
      cliente: idClient
   }
-   
-  
- 
-  
    Services.create(newService, (err, service) => {
      
      if (err) return res.status(500).send('Server error' , err);
@@ -40,30 +44,26 @@ exports.createService = async (req, res, next) => {
       tipodeservicio:service.tipodeservicio, 
       domicilio:service.domicilio,
       jefedeservicio:service.jefedeservicio,
-      turno12x12:service.turno12x12,
-      turno24x24:service.turno24x24,
+      lturnodoce:service.lturnodoce,
+      lturnovienti:service.lturnovienti,
+      mturnodoce:service.mturnodoce,
+      mturnovienti:service.mturnovienti,
+      miturnodoce:service.miturnodoce,
+      miturnovienti:service.mtiurnovienti,
+      jturnodoce:service.mturnodoce,
+      jturnovienti:service.jturnovienti,
+      vturnodoce:service.vturnodoce,
+      vturnovienti:service.vturnovienti,
+      sturnodoce:service.sturnodoce,
+      sturnovienti:service.sturnovienti,
+      dturnodoce:service.dturnodoce,
+      dturnovienti:service.dturnovienti,
       cliente: service.cliente
    
  
      }
 
-  //  Client.findByIdAndUpdate(
-  //     idClient,
-  //     {
-  //       $push: {
-  //         servicios: {
-  //           dataService
-  //         },
-  //       },
-  //     },
-  //     { new: true, runValidators: true, context: "query" },
-  //     (err, proDB) => {
-  //       if (err) {
-  //         return res.status(400).send(err)
-  //       }
-  //       return res.status(200).send(proDB)
-  //     }
-  //   );
+
     
      // response 
      res.send({ dataService });
@@ -85,8 +85,20 @@ exports.updateService = (req, res, next) => {
     'tipodeservicio',
     'domicilio',
     'jefedeservicio',
-    'turno12x12',
-    'turno24x24'
+    'lturnodoce',
+    'lturnovienti',
+    'mturnodoce',
+    'mturnovienti',
+    'miturnodoce',
+    'miturnovienti',
+    'jturnodoce',
+    'jturnovienti',
+    'vturnodoce',
+    'vturnovienti',
+  '  sturnodoce',
+    'sturnovienti',
+    'dturnodoce',
+   ' dturnovienti'
     ])
   
     Services.findByIdAndUpdate(idservice, body ,{ new: true, runValidators: true, context: 'query' },(err,service)=>{
@@ -103,8 +115,20 @@ exports.updateService = (req, res, next) => {
           tipodeservicio:service.tipodeservicio, 
           domicilio:service.domicilio,
           jefedeservicio:service.jefedeservicio,
-          turno12x12:service.turno12x12,
-          turno24x24:service.turno24x24
+          lturnodoce:service.lturnodoce,
+          lturnovienti:service.lturnovienti,
+          mturnodoce:service.mturnodoce,
+          mturnovienti:service.mturnovienti,
+          miturnodoce:service.miturnodoce,
+          miturnovienti:service.mtiurnovienti,
+          jturnodoce:service.mturnodoce,
+          jturnovienti:service.jturnovienti,
+          vturnodoce:service.vturnodoce,
+          vturnovienti:service.vturnovienti,
+          sturnodoce:service.sturnodoce,
+          sturnovienti:service.sturnovienti,
+          dturnodoce:service.dturnodoce,
+          dturnovienti:service.dturnovienti,
 
           }
           // response 

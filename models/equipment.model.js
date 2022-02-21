@@ -153,6 +153,12 @@ const equipSchema =  new Schema ({
         required: false,
         trim: true
     },
+    idservice:{
+        type: Schema.Types.ObjectId,
+        ref: 'service.model',
+        required: false,
+       
+      },
     activo:{
         type: Boolean,
         default: true
