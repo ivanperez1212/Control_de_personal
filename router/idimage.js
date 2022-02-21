@@ -1,7 +1,7 @@
 const express = require("express");
 const image = require("../models/Userandimg");
 const Client = require("../models/Client");
-const Equip = require("../models/equip")
+const Equip =require("../models/equip")
 const _ = require("underscore");
 const Service = require("../models/Service");
 const app = express();
@@ -35,6 +35,19 @@ app.get('/consulta', (req, res) => {
         });
 });
 
+// me trae la info de los equipos
+app.get('/consultaE', (req, res) => {
+  
+
+    Equip.find()
+        .exec((err, user) => {
+            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+           
+        res.status(200).send( { user })
+        });
+});
+
 
 // me trae la info de un cliente en especifico
 app.get('/consultaclients/:id', (req, res) => {
@@ -49,6 +62,24 @@ app.get('/consultaclients/:id', (req, res) => {
           return res.status(200).send( { client })
          
       
+        
+        });
+});
+
+// me trae la info de un equipo en especifico es de prueba
+app.get('/consultaequip/:id', (req, res) => {
+    const id = req.params.id
+
+
+    Service.findById(id).populate("equiporecibido")
+        .exec((err, equip) => {
+            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+           
+        res.status(200).send( { equip })
+        console.log(equip)
+
+
         
         });
 });
@@ -145,22 +176,27 @@ app.put('/actualizarimg/:id',  (req, res)  => {
      
     });
 });
-// para agregar el id de usuario a equipo
-app.put('/idClient/:id',  (req, res)  => {
-    let idequip = req.params.id;
+// para agregar el id de equipo a servicios
+app.put('/idservicio/:id',  (req, res)  => {
+    let idservice = req.params.id;
     let body = req.body
+    Service.findByIdAndUpdate(
+        idservice,
+        {
+          $push: {
+            equiporecibido:body.equiporecibido
+          },
+        },
+        { new: true, runValidators: true, context: "query" },
+        (err, proDB) => {
+          if (err) {
+            return res.status(400).send({message: 'some goes wrong', err})
+          }
+          return res.status(200).send({proDB})
+        }
+      );
 
-
- Equip.findByIdAndUpdate(idequip, {
-    idClient: body.idClient
-     
- }, (err, equip) => {
-        if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
-
-       
-        res.status(200).send( { equip })
-     
-    });
+    
 });
 
 // agregar el id de servicio a cliente

@@ -3,7 +3,7 @@ const _ = require("underscore");
 
 
 exports.createEquips =  (req, res, next) => {
-
+    const idservice = req.params.id
     const body = req.body;
     const newEquips = {
       celular:body.celular,
@@ -35,7 +35,8 @@ exports.createEquips =  (req, res, next) => {
       patrulla:body.patrulla,
       dpatrulla:body.dpatrulla,
       rondinero:body.rondinero,
-      drondinero:body.drondinero
+      drondinero:body.drondinero,
+      idservice: idservice
       
    }
     

@@ -95,6 +95,7 @@ const clienteSchema = new Schema({
         required: false,
         type: Schema.Types.ObjectId,
         ref: 'Service'
+       
     }],
     activo:{
         type: Boolean,
