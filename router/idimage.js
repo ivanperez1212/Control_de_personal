@@ -57,32 +57,15 @@ app.get('/consultaclients/:id', (req, res) => {
     Client.findById(id).populate({path: 'servicios', populate: { path:'equiporecibido'}})
         .exec((err, client) => {
             if (err)  return res.status(500).send( {message:`error al actualizar ${err} `} )
-
-           
+ 
+          
+        
           return res.status(200).send( { client })
-         
-      
-        
+          
         });
 });
 
-// me trae la info de un equipo en especifico es de prueba
-app.get('/consultaequip/:id', (req, res) => {
-    const id = req.params.id
 
-
-    Service.findById(id).populate("equiporecibido")
-        .exec((err, equip) => {
-            if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
-
-           
-        res.status(200).send( { equip })
-        console.log(equip)
-
-
-        
-        });
-});
 
 
 
