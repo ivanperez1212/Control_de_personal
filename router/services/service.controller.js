@@ -95,10 +95,10 @@ exports.updateService = (req, res, next) => {
     'jturnovienti',
     'vturnodoce',
     'vturnovienti',
-  '  sturnodoce',
+    'sturnodoce',
     'sturnovienti',
     'dturnodoce',
-   ' dturnovienti'
+    'dturnovienti'
     ])
   
     Services.findByIdAndUpdate(idservice, body ,{ new: true, runValidators: true, context: 'query' },(err,service)=>{

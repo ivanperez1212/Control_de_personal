@@ -66,58 +66,82 @@ exports.createEquips =  (req, res, next) => {
 
 exports.updateEquips = (req, res, next) => {
   
-    const idclient = req.params.id
+    const id = req.params.id
    
     let body = _.pick(req.body, [
-    'nombre',
-    'rfc',
-    'correoelectronico',
-    'servicio',
-    'domicilio',
-    'telefono',
-    'cdnombre',
-    'cdtelefono',
-    'cdcorreoelectronicoempresa',
-    'cdcorreoelectronico',
-    'rfcdefacturacion',
-    'domciliofiscal',
-    'cfdi',
-    'formadepago',
-    'metododepago',
-    'fechadefacturacion',
-    'tipodecredito',
-    'comentarios'
+      'celular',
+      'dcelular',
+      'radio',
+      'dradio',
+      'lamparas',
+      'dlamparas',
+      'fornitura',
+      'dfornitura',
+      'tonfa',
+      'dtonfa',
+      'gas',
+      'dgas',
+      'teaser',
+      'dteaser',
+      'impermeable',
+      'dimpermeable',
+      'espejoderevision',
+      'despejoderevision',
+      'detectordemetales',
+      'ddetectordemetales',
+      'mazo',
+      'dmazo',
+      'botasimpermeables',
+      'dbotasimpermeables',
+      'bicicleta',
+      'dbicicleta',
+      'patrulla',
+      'dpatrulla',
+      'rondinero',
+      'drondinero'
   
     ])
   
-    Clients.findByIdAndUpdate(idclient, body ,{ new: true, runValidators: true, context: 'query' },(err,client)=>{
+    Equips.findByIdAndUpdate(id, body ,{ new: true, runValidators: true, context: 'query' },(err,equip)=>{
       if (err) return res.status(500).send('Server error');
   
-      if (!client) res.status(500).send( {message:`error al actualizar ${err} `} )
+      if (!equip) res.status(500).send( {message:`error al actualizar ${err} `} )
         
   
-        const dataClient = {
-          nombre:client.nombre,
-          rfc:client.rfc, 
-          correoelectronico:client.correoelectronico, 
-          servicio:client.servicio,
-          domicilio:client.domicilio, 
-          telefono:client.telefono,
-          cdnombre:client.cdnombre,
-          cdtelefono:client.cdtelefono,
-          cdcorreoelectronicoempresa:client.cdcorreoelectronicoempresa,
-          cdcorreoelectronico:client.cdcorreoelectronico,
-          rfcdefacturacion:client.rfcdefacturacion,
-          domciliofiscal:client.domciliofiscal,
-          cfdi:client.cfdi,
-          formadepago:client.formadepago,
-          metododepago:client.metododepago,
-          fechadefacturacion:client.echadefacturacion,
-          tipodecredito:client.tipodecredito,
-          comentarios:client.comentarios
+        const dataEquip = {
+        celular:equip.celular,
+      dcelular:equip.dcelular,
+      radio:equip.radio,
+      dradio:equip.dradio,  
+      lamparas:equip.lamparas,
+      dlamparas:equip.dlamparas, 
+      fornitura:equip.fornitura,
+      dfornitura:equip.dfornitura,
+      tonfa:equip.tonfa,
+      dtonfa:equip.dtonfa, 
+      gas:equip.gas,
+      dgas:equip.dgas,
+      teaser:equip.teaser,
+      dteaser:equip.dteaser,
+      impermeable:equip.impermeable,
+      dimpermeable:equip.dimpermeable,
+      espejoderevision:equip.espejoderevision,
+      despejoderevision:equip.despejoderevision,
+      detectordemetales:equip.detectordemetales,
+      ddetectordemetales:equip.ddetectordemetales,
+      mazo:equip.mazo,
+      dmazo:equip.dmazo,
+      botasimpermeables:equip.botasimpermeables,
+      dbotasimpermeables:equip.dbotasimpermeables,
+      bicicleta:equip.bicicleta,
+      dbicicleta:equip.dbicicleta,
+      patrulla:equip.patrulla,
+      dpatrulla:equip.dpatrulla,
+      rondinero:equip.rondinero,
+      drondinero:equip.drondinero,
           }
           // response 
-          res.send({ dataClient });
+          res.send({ dataEquip });
        
         
         
@@ -126,41 +150,40 @@ exports.updateEquips = (req, res, next) => {
   }
 
   
-exports.deleteEquips = (req, res) => {
+// exports.deleteEquips = (req, res) => {
   
-  const idclient = req.params.id
+//   const id = req.params.id
   
 
-  Clients.findByIdAndUpdate(idclient,{
-    activo: false
+//   Equips.findByIdAndUpdate(id,{
+//     activo: false
 
-  },(err,user)=>{
-    if (err) return res.status(500).send('Server error');
+//   },(err,equip )=>{
+//     if (err) return res.status(500).send('Server error');
     
-    const dataClient = {
-     nombre: user.nombre,
-      activo: user.activo
+//     const data = {
+//     
     
-    }
-    // response 
-    res.send({ dataClient });
-  })
-}
+//     }
+//     // response 
+//     res.send({ dataC });
+//   })
+// }
 
 
 exports.obtenerEquips = (req, res) => {
   
-  const idclient = req.params.id
+  const id = req.params.id
   
 
-  Clients.findById(idclient,{
+  Equips.findById(id,{
    
-  },(err,client)=>{
+  },(err,equip)=>{
     if (err) return res.status(500).send('Server error');
     
    
  
     // response 
-    res.send({ client });
+    res.send({ equip });
   })
 }

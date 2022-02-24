@@ -103,7 +103,7 @@ app.get('/consultaservice', (req, res) => {
 app.get('/consultaservice/:id', (req, res) => {
     const id = req.params.id
 
-    Service.findById(id)
+    Service.findById(id).populate("equiporecibido")
         .exec((err, service) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
