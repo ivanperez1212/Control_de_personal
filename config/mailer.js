@@ -7,7 +7,7 @@
      secure: true, // true for 465, false for other ports
     auth: {
      user: 'ivanperez1l40@gmail.com', // generated gmail user
-      pass: 'luxirqyliixddgls', // generated app gmail  password
+      pass: 'qlzdnpubfeiwllbe', // generated app gmail  password
     },// is very import add the line for that work
     tls : { rejectUnauthorized: false }
   });
