@@ -173,6 +173,12 @@ const userSchema = new Schema({
     type: String,
     required: false,
     trim: true
+},
+Servicio:{
+  type: Schema.Types.ObjectId,
+  ref: 'Service',
+  required: false,
+ 
 }  
 }, {
     timestamps: true

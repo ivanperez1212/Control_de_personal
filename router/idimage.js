@@ -103,7 +103,7 @@ app.get('/consultaservice', (req, res) => {
 app.get('/consultaservice/:id', (req, res) => {
     const id = req.params.id
 
-    Service.findById(id).populate("equiporecibido")
+    Service.findById(id).populate("Guardias").populate("equiporecibido")
         .exec((err, service) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
@@ -192,6 +192,46 @@ app.put('/idClienteservicio/:id',  (req, res)  => {
         {
           $push: {
             servicios:body.servicios
+          },
+        },
+        { new: true, runValidators: true, context: "query" },
+        (err, proDB) => {
+          if (err) {
+            return res.status(400).send({message: 'some goes wrong', err})
+          }
+          return res.status(200).send({proDB})
+        }
+      );
+
+});
+// es para agregar el id de servicio a usuario
+app.put('/idservecio/:id',  (req, res)  => {
+    let user = req.params.id;
+    let body = req.body
+
+
+ image.findByIdAndUpdate(user, {
+    Servicio: body.Servicio
+     
+ }, (err, user) => {
+        if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+       
+        res.status(200).send( { user })
+     
+    });
+});
+
+// agregar el id de guardias a servicios
+app.put('/idGuardia/:id',  (req, res)  => {
+    let id = req.params.id;
+    let body = req.body
+   
+    Service.findByIdAndUpdate(
+        id,
+        {
+          $push: {
+            Guardias:body.Guardias
           },
         },
         { new: true, runValidators: true, context: "query" },

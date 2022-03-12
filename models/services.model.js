@@ -128,6 +128,12 @@ const serviceSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'equipment.model',
 }],
+Guardias:[{
+  type: Schema.Types.ObjectId,
+  ref: 'User',
+  required: false,
+  
+}],
   activo:{
     type: Boolean,
     default: true

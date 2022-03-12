@@ -174,6 +174,12 @@ const userSchema = new Schema({
     required: false
 
   },
+  Servicio:{
+    type: Schema.Types.ObjectId,
+    ref: 'Services',
+    required: false,
+   
+  } 
 }, {
     timestamps: true
   })

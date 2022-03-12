@@ -163,6 +163,12 @@ const serviceSchema = new Schema({
         required: false,
         
     }],
+    Guardias:[{
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: false,
+      
+  }],
        
       activo:{
         type: Boolean,
