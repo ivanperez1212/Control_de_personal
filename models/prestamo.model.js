@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const borrowingSchema =  new Schema ({
-    nombreg:{
+    nombre:{
         type: String,
         required: false,
         trim: true
@@ -13,7 +13,7 @@ const borrowingSchema =  new Schema ({
         required: false,
         trim: true
     },
-    fechadepresamo:{
+    fechadeprestamo:{
         type: String,
         required: false,
         trim: true
@@ -23,16 +23,20 @@ const borrowingSchema =  new Schema ({
         required: false,
         trim: true
     },
+
     idusuario:{
         type: Schema.Types.ObjectId,
-        ref: 'cliente.model',
+        ref: 'User',
         required: false,
     },
-   
-    activo:{
+  
+       
+      activo:{
         type: Boolean,
         default: true
       },
+     
+    
 
 }, {
     timestamps: true

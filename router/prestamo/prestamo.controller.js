@@ -6,10 +6,11 @@ exports.createPrestamo = async (req, res, next) => {
   const id = req.params.id
    const body = req.body;
    const newPrestamo = {
-     nombreg:body.nombreg,
+     nombre:body.nombre,
      montoprestado:body.montoprestado,
-     fechadepresamo:body.fechadepresamo,
+     fechadeprestamo:body.fechadeprestamo,
      numerodepagos:body.numerodepagos,
+     estado: body.estado,
      idusuario:id    
   
   }
@@ -20,10 +21,11 @@ exports.createPrestamo = async (req, res, next) => {
     
      const dataPrestamo = {
       id:prestamo.id,
-      nombreg:prestamo.nombreg,
+      nombre:prestamo.nombre,
       montoprestado:prestamo. montoprestado, 
-      fechadepresamo:prestamo.fechadepresamo, 
+      fechadeprestamo:prestamo.fechadeprestamo, 
       numerodepagos:prestamo.numerodepagos,
+      estado:prestamo.prestamo,
       idusuario:prestamo.idusuario
      }
 
@@ -42,9 +44,9 @@ exports.updatePrestamo = (req, res, next) => {
     const id = req.params.id
    
     let body = _.pick(req.body, [
-    'nombreg',
+    'nombre',
     'montoprestado',
-    'fechadepresamo',
+    'fechadeprestamo',
     'numerodepagos',
     
   
@@ -58,13 +60,13 @@ exports.updatePrestamo = (req, res, next) => {
   
          const dataPrestamo = {
       id:prestamo.id,
-      nombreg:prestamo.nombreg,
+      nombre:prestamo.nombre,
       montoprestado:prestamo. montoprestado, 
-      fechadepresamo:prestamo.fechadepresamo, 
+      fechadeprestamo:prestamo.fechadeprestamo, 
       numerodepagos:prestamo.numerodepagos
      }
           // response 
-          res.send({ dataprestamo });
+          res.send({ dataPrestamo });
        
         
         
@@ -85,13 +87,13 @@ exports.deletePrestamo = (req, res) => {
   },(err,prestamo)=>{
     if (err) return res.status(500).send('Server error');
     
-    const dataprestamo = {
+    const dataPrestamo = {
      nombre: prestamo.nombre,
       activo: prestamo.activo
     
     }
     // response 
-    res.send({ dataprestamo });
+    res.send({ dataPrestamo });
   })
 }
 

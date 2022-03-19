@@ -20,5 +20,5 @@ borrowingSchema.statics = {
   
 }
 
-const borrowingModel = mongoose.model('borrowing', borrowingSchema);
+const borrowingModel = mongoose.model('borrows', borrowingSchema);
 module.exports = borrowingModel;

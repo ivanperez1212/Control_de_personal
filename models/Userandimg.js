@@ -174,14 +174,202 @@ const userSchema = new Schema({
     required: false,
     trim: true
 },
-Servicio:{
+prestamos:[{
+  type: Schema.Types.ObjectId,
+  ref: 'borrows',
+  required: false,
+ 
+}] ,
+Servicio:[{
   type: Schema.Types.ObjectId,
   ref: 'Service',
   required: false,
  
-}  
-}, {
-    timestamps: true
-  });
+}],
 
+//turnos
+tlp:{
+  type: String,
+  required: false,
+  trim: true
+},
+tmp:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tmip:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tjp:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tvp:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tsp:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tdp:{
+  type: String,
+  required: false,
+  trim: true
+},
+tls:{
+  type: String,
+  required: false,
+  trim: true
+},
+tms:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tmis:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tjs:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tvs:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tss:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tds:{
+  type: String,
+  required: false,
+  trim: true
+},
+tlt:{
+  type: String,
+  required: false,
+  trim: true
+},
+tmt:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tmit:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tjt:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tvt:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tst:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tdt:{
+  type: String,
+  required: false,
+  trim: true
+},
+tlc:{
+  type: String,
+  required: false,
+  trim: true
+},
+tmc:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tmic:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tjc:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tvc:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tsc:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tdc:{
+  type: String,
+  required: false,
+  trim: true
+},
+tlq:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tmq:{
+  type: String,
+  required: false,
+  trim: true
+},
+
+tmiq:{
+  type: String,
+  required: false,
+  trim: true
+},     
+activo:{
+  type: Boolean,
+  default: true
+}
+}, {
+  timestamps: true
+})
 module.exports = mongoose.model("User",userSchema);

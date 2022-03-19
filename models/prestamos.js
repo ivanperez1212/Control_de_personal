@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const serviceSchema = new Schema({
-    nombreg:{
+    nombre:{
         type: String,
         required: false,
         trim: true
@@ -11,7 +11,7 @@ const serviceSchema = new Schema({
         required: false,
         trim: true
     },
-    fechadepresamo:{
+    fechadeprestamo:{
         type: String,
         required: false,
         trim: true
@@ -23,12 +23,10 @@ const serviceSchema = new Schema({
     },
     idusuario:{
         type: Schema.Types.ObjectId,
-        ref: 'Userandimg',
+        ref: 'User',
         required: false,
-    },
-  
-       
-      activo:{
+    },  
+     activo:{
         type: Boolean,
         default: true
       },
@@ -38,4 +36,4 @@ const serviceSchema = new Schema({
     timestamps: true
   });
 
-module.exports = mongoose.model("Service",serviceSchema);
+module.exports = mongoose.model("borrow",serviceSchema);
