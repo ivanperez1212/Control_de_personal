@@ -4,6 +4,7 @@ const Client = require("../models/Client");
 const Equip =require("../models/equip")
 const _ = require("underscore");
 const Service = require("../models/Service");
+
 const app = express();
 // este se usa para metodos de consulta a la base de datos
 
@@ -12,7 +13,7 @@ const app = express();
 app.get('/consulta/:id', (req, res) => {
     const id = req.params.id
 
-    image.findById(id)
+    image.findById(id).populate("prestamos")
         .exec((err, user) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
@@ -20,13 +21,25 @@ app.get('/consulta/:id', (req, res) => {
         res.status(200).send( { user })
         });
 });
+// me trae la info de un usuario en especifico
+app.get('/consultap/:id', (req, res) => {
+  const id = req.params.id
+
+  image.findById(id)
+      .exec((err, user) => {
+          if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+         
+      res.status(200).send( { user })
+      });
+});
 // me trae la info de los usuarios
 app.get('/consulta', (req, res) => {
   
 
     image.find({$or:[
         { 'activo': true}
-    ]})
+    ]}).populate("Servicio")
         .exec((err, user) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
@@ -103,7 +116,7 @@ app.get('/consultaservice', (req, res) => {
 app.get('/consultaservice/:id', (req, res) => {
     const id = req.params.id
 
-    Service.findById(id).populate("equiporecibido")
+    Service.findById(id).populate("equiporecibido").populate("Guardias")
         .exec((err, service) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
@@ -205,5 +218,119 @@ app.put('/idClienteservicio/:id',  (req, res)  => {
 
 });
 
+
+// agregar el id de prestamos en usuarios
+app.put('/idUserprestamo/:id',  (req, res)  => {
+  let id = req.params.id;
+  let body = req.body
+ 
+  image.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          prestamos:body.prestamos
+        },
+      },
+      { new: true, runValidators: true, context: "query" },
+      (err, proDB) => {
+        if (err) {
+          return res.status(400).send({message: 'some goes wrong', err})
+        }
+        return res.status(200).send({proDB})
+      }
+    );
+
+});
+
+// es para agregar el id de servicio a usuario
+app.put('/idservecio/:id',  (req, res)  => {
+    let user = req.params.id;
+    let body = req.body
+
+
+ image.findByIdAndUpdate(
+   user, {
+    $push: {
+      Servicio:body.Servicio
+    },
+     
+ }, (err, user) => {
+        if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+       
+        res.status(200).send( { user })
+     
+    });
+});
+
+// agregar el id de guardias a servicios
+app.put('/idGuardia/:id',  (req, res)  => {
+    let id = req.params.id;
+    let body = req.body
+   
+    Service.findByIdAndUpdate(
+        id,
+        {
+          $push: {
+            Guardias:body.Guardias
+          },
+        },
+        { new: true, runValidators: true, context: "query" },
+        (err, proDB) => {
+          if (err) {
+            return res.status(400).send({message: 'some goes wrong', err})
+          }
+          return res.status(200).send({proDB})
+        }
+      );
+
+});
+// es para actualizar la imagen de usuario
+app.put('/turno/:d',  (req, res)  => {
+  let user = req.params.d;
+  let body = req.body
+
+
+image.findByIdAndUpdate(user, {
+   tlp:body.tlp,
+   tmp:body.tmp,
+   tmip:body.tmip,
+   tjp:body.tjp,
+   tvp:body.tvp,
+   tsp:body.tsp,
+   tdp:body.tdp,
+   tls:body.tls,
+   tms:body.tms,
+   tmis:body.tmis,
+   tjs:body.tjs,
+   tvs:body.tvs,
+   tss:body.tss,
+   tds:body.tds,
+   tlt:body.tlt,
+   tmt:body.tmt,
+   tmit:body.tmit,
+   tjt:body.tjt,
+   tvt:body.tvt,
+   tst:body.tst,
+   tdt:body.tdt,
+   tlc:body.tlc,
+   tmc:body.tmc,
+   tmic:body.tmic,
+   tjc:body.tjc,
+   tvc:body.tvc,
+   tsc:body.tsc,
+   tdc:body.tdc,
+   tlq:body.tlq,
+   tmq:body.tmq,
+   tmiq:body.tmiq,
+   
+}, (err, user) => {
+      if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+     
+      res.status(200).send( {client: user })
+   
+  });
+});
 
 module.exports = app;

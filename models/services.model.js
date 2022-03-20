@@ -52,12 +52,22 @@ const serviceSchema = new Schema({
     required: false,
     trim: true
   },
+   lturnoNdoce:{
+    type: Number,
+    required: false,
+    trim: true
+  },
   lturnovienti:{
     type: Number,
     required: false,
     trim: true
   },
   mturnodoce:{
+    type: Number,
+    required: false,
+    trim: true
+  },
+  mturnoNdoce:{
     type: Number,
     required: false,
     trim: true
@@ -72,12 +82,22 @@ const serviceSchema = new Schema({
     required: false,
     trim: true
   },
+   miturnoNdoce:{
+    type: Number,
+    required: false,
+    trim: true
+  },
   miturnovienti:{
     type: Number,
     required: false,
     trim: true
   },
   jturnodoce:{
+    type: Number,
+    required: false,
+    trim: true
+  },
+    jturnoNdoce:{
     type: Number,
     required: false,
     trim: true
@@ -92,6 +112,11 @@ const serviceSchema = new Schema({
     required: false,
     trim: true
   },
+    vturnoNdoce:{
+    type: Number,
+    required: false,
+    trim: true
+  },
   vturnovienti:{
     type: Number,
     required: false,
@@ -102,12 +127,22 @@ const serviceSchema = new Schema({
     required: false,
     trim: true
   },
+    sturnoNdoce:{
+    type: Number,
+    required: false,
+    trim: true
+  },
   sturnovienti:{
     type: Number,
     required: false,
     trim: true
   },
   dturnodoce:{
+    type: Number,
+    required: false,
+    trim: true
+  },
+    dturnoNdoce:{
     type: Number,
     required: false,
     trim: true
@@ -127,6 +162,12 @@ const serviceSchema = new Schema({
     required: false,
     type: Schema.Types.ObjectId,
     ref: 'equipment.model',
+}],
+Guardias:[{
+  type: Schema.Types.ObjectId,
+  ref: 'User',
+  required: false,
+  
 }],
   activo:{
     type: Boolean,

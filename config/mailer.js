@@ -1,6 +1,6 @@
   const nodemailer = require('nodemailer')
  
-// //  // create reusable transporter object using the default SMTP transport
+ // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
      host: "smtp.gmail.com",
      port: 465, // es el puerto de gmail
@@ -16,4 +16,4 @@
      console.log('Ready for send emails')
    })
      
-   module.exports = transporter;
+  module.exports = transporter;
