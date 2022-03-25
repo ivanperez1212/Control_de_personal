@@ -6,7 +6,6 @@ exports.createClients =  (req, res, next) => {
     const newClients = {
       nombre:body.nombre,
       rfc:body.rfc, 
-      correoelectronico:body.correoelectronico, 
       servicio:body.servicio,
       domicilio:body.domicilio, 
       telefono:body.telefono,
@@ -14,6 +13,7 @@ exports.createClients =  (req, res, next) => {
       cdtelefono:body.cdtelefono,
       cdcorreoelectronicoempresa:body.cdcorreoelectronicoempresa,
       cdcorreoelectronico:body.cdcorreoelectronico,
+      correoelectronicofacturacion:body.correoelectronicofacturacion, 
       rfcdefacturacion:body.rfcdefacturacion,
       domciliofiscal:body.domciliofiscal,
       cfdi:body.cfdi,

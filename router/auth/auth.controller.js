@@ -25,8 +25,20 @@ exports.createUser =  (req, res, next) => {
     creditodeInfonavit:body.creditodeInfonavit, 
     estadocivil:body.estadocivil, 
     correoelectronico:body.correoelectronico, 
-    talladeplayera:body.talladeplayera, 
-    talladepantalon:body.talladepantalon,
+    cdeplayera:body.cdeplayera,
+    ddeplayera:body.ddeplayera,
+    cdepantalon:body.cdepantalon,
+    ddepantalon:body.ddepantalon,
+    cdebotas:body.cdebotas,
+    ddebotas:body.ddebotas,
+    cdecachucha:body.cdecachucha,
+    ddecachucha:body.ddecachucha,
+    cdechamarra:body.cdechamarra,
+    ddechamarra:body.ddechamarra,
+    cdechaleco:body.cdechaleco,
+    ddechaleco:body.ddechaleco,
+    cdelentes:body.cdelentes,
+    ddelentes:body.ddelentes,
     pensionado:body.pensionado, 
     niveldeescolaridad:body.niveldeescolaridad,
     rol:body.rol,
@@ -86,7 +98,7 @@ exports.olvidasteContraseña =  (req, res, next) => {
  
 console.log(user._id)
 // creas un token con las siguientes cosas 
-     const token = jwt.sign({ id:user._id, correoelectronico: user.correoelectronico}, SECRET_KEYRESET, { expiresIn: '20m'})
+     const token = jwt.sign({ id:user._id, correoelectronico: user.correoelectronico}, SECRET_KEYRESET, { expiresIn: '10m'})
    //  console.log('token:',token)
     verificationLink = `http://localhost:8100/recuperarcontrasena/${token}`;
 
@@ -142,19 +154,20 @@ console.log(user._id)
 }
 
 exports.createcontraseña =  (req, res, next) => {
-
+  const token = req.params.token;
   const body = req.body;
-
+console.log(body)
   const newUser = {
     contrasena: bcrypt.hashSync(body.contrasena)
  }
+
  // para agregarla a los header
- const resetToken = req.headers.reset;
+ const resetToken = token;
  console.log(resetToken)
  //es para verificar el token desde el front 
  jwtPayload = jwt.verify(resetToken, SECRET_KEYRESET );
  // es para buscar el token en la base de datos 
-
+ 
  User.findOne( {resetToken},(err, user) => {
 
 
@@ -212,8 +225,20 @@ exports.updateUser = (req, res, next) => {
     'creditodeInfonavit',
     'estadocivil',
     'correoelectronico',
-    'talladeplayera',
-    'talladepantalon',
+    'cdeplayera',
+    'ddeplayera',
+    'cdepantalon',
+    'ddepantalon',
+    'cdebotas',
+    'ddebotas',
+    'cdecachucha',
+    'ddecachucha',
+    'cdechamarra',
+    'ddechamarra',
+    'cdechaleco',
+    'ddechaleco',
+    'cdelentes',
+    'ddelentes',
     'pensionado',
     'niveldeescolaridad',
     'rol'
@@ -244,8 +269,20 @@ exports.updateUser = (req, res, next) => {
         creditodeInfonavit:user.creditodeInfonavit, 
         estadocivil:user.estadocivil, 
         correoelectronico: user.correoelectronico,
-        talladeplayera:user.talladeplayera, 
-        talladepantalon:user.talladepantalon,
+        cdeplayera:user.cdeplayera,          
+        ddeplayera:user.ddeplayera ,  
+        cdepantalon:user.cdepantalon,
+        ddepantalon:user.ddepantalon,
+        cdebotas:user.cdebotas,
+        ddebotas:user.ddebotas,
+        cdecachucha:user.cdecachucha,
+        ddecachucha:user.ddecachucha,
+        cdechamarra:user.cdechamarra,
+        ddechamarra:user.ddechamarra,
+        cdechaleco:user.cdechaleco,
+        ddechaleco:user.ddechaleco,
+        cdelentes:user.cdelentes,
+        ddelentes:user.ddelentes,
         pensionado:user.pensionado, 
         niveldeescolaridad:user.niveldeescolaridad,
         rol:user.rol,

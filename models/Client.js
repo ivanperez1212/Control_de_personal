@@ -90,7 +90,13 @@ const clienteSchema = new Schema({
         type: String,
         required: false,
         trim: true
-    },
+    }, 
+    servicios:[{
+        required: false,
+        type: Schema.Types.ObjectId,
+        ref: 'Service'
+       
+    }],
     activo:{
         type: Boolean,
         default: true

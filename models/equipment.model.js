@@ -2,103 +2,163 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const clienteSchema =  new Schema ({
-    nombre:{
+const equipSchema =  new Schema ({
+    celular:{
         type: String,
         required: false,
         trim: true
     },
-    rfc:{
+    dcelular:{
         type: String,
         required: false,
         trim: true
     },
-    servicio:{
+    radio:{
         type: String,
         required: false,
         trim: true
     },
-    domicilio:{
+    dradio:{
         type: String,
         required: false,
         trim: true
     },
-    telefono:{
-        type: String,
-        required: false,
-        trim: true
-    },// datos de contacto directo
-    cdnombre:{
+    lamparas:{
         type: String,
         required: false,
         trim: true
     },
-    cdtelefono:{
+    dlamparas:{
         type: String,
         required: false,
         trim: true
     },
-    cdcorreoelectronicoempresa:{
+    fornitura:{
         type: String,
         required: false,
         trim: true
     },
-    cdcorreoelectronico:{
+    dfornitura:{
         type: String,
         required: false,
         trim: true
     },
-    correoelectronicofacturacion:{
+    tonfa:{
         type: String,
         required: false,
         trim: true
     },
-    // datos de facturacion
-    rfcdefacturacion:{
+    dtonfa:{
         type: String,
         required: false,
         trim: true
     },
-    domciliofiscal:{
+    gas:{
         type: String,
         required: false,
         trim: true
     },
-    cfdi:{
+    dgas:{
         type: String,
         required: false,
         trim: true
     },
-    formadepago:{
+    teaser:{
         type: String,
         required: false,
         trim: true
     },
-    metododepago:{
+    dteaser:{
         type: String,
         required: false,
         trim: true
     },
-    fechadefacturacion:{
+    impermeable:{
         type: String,
         required: false,
         trim: true
     },
-    tipodecredito:{
+    dimpermeable:{
         type: String,
         required: false,
         trim: true
     },
-    comentarios:{
+    espejoderevision:{
         type: String,
         required: false,
         trim: true
     },
-    servicios:[{
+    despejoderevision:{
+        type: String,
         required: false,
+        trim: true
+    },
+    detectordemetales:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    ddetectordemetales:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    mazo:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    dmazo:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    botasimpermeables:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    dbotasimpermeables:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    bicicleta:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    dbicicleta:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    patrulla:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    dpatrulla:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    rondinero:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    drondinero:{
+        type: String,
+        required: false,
+        trim: true
+    },
+    idservice:{
         type: Schema.Types.ObjectId,
-        ref: 'services.model'
-    }],
+        ref: 'service.model',
+        required: false,
+       
+      },
     activo:{
         type: Boolean,
         default: true
@@ -108,4 +168,4 @@ const clienteSchema =  new Schema ({
     timestamps: true
   })
 
-  module.exports = clienteSchema;
+  module.exports = equipSchema;
