@@ -103,7 +103,7 @@ app.get('/consultaservice', (req, res) => {
 
     Service.find({$or:[
         { 'activo': true}
-    ]})
+    ]}).populate("Guardias")
         .exec((err, service) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
@@ -285,7 +285,7 @@ app.put('/idGuardia/:id',  (req, res)  => {
       );
 
 });
-// es para actualizar la imagen de usuario
+// es para actualizar los turnos asignados
 app.put('/turno/:d',  (req, res)  => {
   let user = req.params.d;
   let body = req.body
@@ -328,7 +328,57 @@ image.findByIdAndUpdate(user, {
       if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
      
-      res.status(200).send( {client: user })
+      res.status(200).send(  user )
+   
+  });
+});
+
+// es para actualizar el pase de lista
+app.put('/paselista/:d',  (req, res)  => {
+  let user = req.params.d;
+  let body = req.body;
+  console.log(user);
+console.log(body);
+
+image.findByIdAndUpdate(user, {
+  tlpl: body.tlpl,
+  tmpl: body.tmpl,
+  tmipl: body.tmipl,
+  tjpl: body.tjpl,
+  tvpl: body.tvpl,
+  tspl: body.tspl,
+  tdpl: body.tdpl,
+  tlsl: body.tlsl,
+  tmsl: body.tmsl,
+  tmisl: body.tmisl,
+  tjsl: body.tjsl,
+  tvsl: body.tvsl,
+  tssl: body.tssl,
+  tdsl: body.tdsl,
+  tltl: body.tltl,
+  tmtl: body.tmtl,
+  tmitl: body.tmitl,
+  tjtl: body.tjtl,
+  tvtl: body.tvtl,
+  tstl: body.tstl,
+  tdtl: body.tdtl,
+  tlcl: body.tlcl,
+  tmcl: body.tmcl,
+  tmicl: body.tmicl,
+  tjcl: body.tjcl,
+  tvcl: body.tvcl,
+  tscl: body.tscl,
+  tdcl: body.tdcl,
+  tlql: body.tlql,
+  tmql: body.tmql,
+  tmiql: body.tmiql
+   
+}, (err, user) => {
+      if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+      console.log(err)
+     
+      res.status(200).send(  user )
+      
    
   });
 });

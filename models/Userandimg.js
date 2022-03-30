@@ -365,6 +365,191 @@ tmiq:{
   required: false,
   trim: true
 },     
+
+
+//turnos
+tlpl:{
+  type:Boolean,
+  required: false,
+  trim: true,
+  default: 'false'
+},
+tmpl:{
+  type: Boolean,
+  required: false,
+  trim: true,
+  default: 'false'
+},
+
+tmipl:{
+  type: Boolean,
+  required: false,
+  trim: true,
+  default: 'false'
+},
+
+tjpl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tvpl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tspl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tdpl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+tlsl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+tmsl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tmisl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tjsl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tvsl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tssl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tdsl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+tltl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+tmtl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tmitl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tjtl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tvtl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tstl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tdtl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+tlcll:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+tmcl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tmicl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tjcl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tvcl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tscl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tdcl:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+tlql:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tmql:{
+  type: Boolean,
+  required: false,
+  trim: true
+},
+
+tmiql:{
+  type: Boolean,
+  required: false,
+  trim: true
+},  
+
+
 activo:{
   type: Boolean,
   default: true
