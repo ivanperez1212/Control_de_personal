@@ -1,31 +1,35 @@
 {
-  "name": "estadias",
+  "name": "back-end",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "class-validator": "^0.13.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.4",
+    "mongoose-unique-validator": "^3.0.0",
+    "multer": "^1.4.4",
+    "nodemailer": "^6.7.2",
+    "underscore": "^1.13.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
   "scripts": {
-    "start": "node server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanperez1212/control.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "base64-img": "^1.0.4",
-    "bcrypt": "^4.0.1",
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "express-fileupload": "^1.1.7-alpha.3",
-    "is-base64": "^1.1.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.12",
-    "mongoose-auto-increment": "^5.0.1",
-    "mongoose-unique-validator": "^2.0.3",
-    "morgan": "^1.10.0",
-    "ngrok": "^4.0.1",
-    "node-datetime": "^2.1.2",
-    "nodemailer": "^6.4.6",
-    "snyk": "^1.521.0",
-    "underscore": "^1.10.2",
-    "uniqid": "^5.2.0"
-  }
+  "bugs": {
+    "url": "https://github.com/ivanperez1212/control/issues"
+  },
+  "homepage": "https://github.com/ivanperez1212/control#readme"
 }
