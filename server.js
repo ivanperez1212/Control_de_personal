@@ -29,7 +29,8 @@ app.use("/api", require("./router/index"));
 mongoose.connect(
   process.env.URLDB,{
     useUnifiedTopology: true,
-    useNewUrlParser: true },
+    useNewUrlParser: true
+    },
  
   (err, resp) => {
     if (err) throw err;
