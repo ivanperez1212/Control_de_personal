@@ -14,7 +14,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || "dev";
 let urlDB;
 
 if (process.env.NODE_ENV === "dev") {
-    urlDB= "mongodb+srv://ivan1:csOX3MZpZvdJj94J@cluster0.plo5k.mongodb.net/Control?retryWrites=true&w=majority"
+   urlDB= "mongodb+srv://ivan1:Wg2hhAC6QWqyybmj@cluster0.plo5k.mongodb.net/Control"
   // urlDB = "mongodb://localhost:27017/Control";
 
 } 
