@@ -4,6 +4,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
+
+
 //habilita CORS
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
