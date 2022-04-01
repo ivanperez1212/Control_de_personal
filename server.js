@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use("/api", require("./router/index"));
 //conector a la db
 mongoose.connect(
-  process.env.URLDB,
+  process.env.URLDB,{useNewUrlParser: true, useUnifiedTopology: true},
  
   (err, resp) => {
     if (err) throw err;
