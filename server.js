@@ -4,6 +4,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
+
+
 //habilita CORS
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -27,7 +29,10 @@ app.use(bodyParser.json());
 app.use("/api", require("./router/index"));
 //conector a la db
 mongoose.connect(
-  process.env.URLDB,
+  process.env.URLDB,{
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+    },
  
   (err, resp) => {
     if (err) throw err;
