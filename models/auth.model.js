@@ -510,7 +510,7 @@ tdtl:{
   trim: true,
   default: 'false'
 },
-tlcll:{
+tlcl:{
   type: Boolean,
   required: false,
   trim: true,

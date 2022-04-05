@@ -14,8 +14,8 @@ router.post('/upload', uploader, async (req, res)=> {
      if(file && body ) {
         const newImage = new Image({
             fileName : body.name,
-            fileUrl : `http://localhost:${process.env.PORT}/api/${file.filename}`
-           
+            //fileUrl : `http://localhost:${process.env.PORT}/api/${file.filename}`
+            fileUrl : `https://ionic-proyect.herokuapp.com/api/${file.filename}`
         })
        
         await newImage.save()
