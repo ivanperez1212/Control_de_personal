@@ -1,7 +1,7 @@
 /* jshint esversion: 8 */
-
+require('dotenv').config()
 //multer host de imagenes
- let host
+let host
 
 
 //PUERTO
@@ -11,13 +11,10 @@ process.env.PORT = process.env.PORT || 3001;
 process.env.NODE_ENV = process.env.NODE_ENV || "dev";
 
 //conexion a la db
-let urlDB;
+  console.log(process.env.NAMEDB)
+  const urlDB= `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.plo5k.mongodb.net/${process.env.NAMEDB}?retryWrites=true&w=majority`
+  // urlDB = "mongodb://localhost:27017/Control";
 
-if (process.env.NODE_ENV === "dev") {
-  //  urlDB= "mongodb+srv://ivan1:<ivan123>@cluster0.plo5k.mongodb.net/Control?retryWrites=true&w=majority"
-  urlDB = "mongodb://localhost:27017/Control";
-
-} 
 
  
 process.env.URLDB = urlDB;
