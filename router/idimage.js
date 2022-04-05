@@ -4,7 +4,7 @@ const Client = require("../models/Client");
 const Equip =require("../models/equip")
 const _ = require("underscore");
 const Service = require("../models/Service");
-
+const Prestamo = require("../models/prestamos")
 const app = express();
 // este se usa para metodos de consulta a la base de datos
 
@@ -218,6 +218,18 @@ app.put('/idClienteservicio/:id',  (req, res)  => {
 
 });
 
+// trae un prestamo en especifico
+app.get('/consultaPrestamo/:id', (req, res) => {
+  const id = req.params.id
+
+  Prestamo.findById(id)
+      .exec((err, prestamo) => {
+          if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+
+         
+      res.status(200).send( { prestamo })
+      });
+});
 
 // agregar el id de prestamos en usuarios
 app.put('/idUserprestamo/:id',  (req, res)  => {

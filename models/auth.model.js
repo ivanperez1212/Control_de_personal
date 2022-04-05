@@ -372,179 +372,210 @@ tmiq:{
 tlpl:{
   type:Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 tmpl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tmipl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tjpl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tvpl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tspl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tdpl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 tlsl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 tmsl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tmisl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tjsl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tvsl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tssl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tdsl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 tltl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 tmtl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tmitl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tjtl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tvtl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tstl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tdtl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
-tlcl:{
+tlcll:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 tmcl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tmicl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tjcl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tvcl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tscl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tdcl:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 tlql:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tmql:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },
 
 tmiql:{
   type: Boolean,
   required: false,
-  trim: true
+  trim: true,
+  default: 'false'
 },  
 
 
