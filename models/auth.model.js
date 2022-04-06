@@ -155,6 +155,11 @@ const userSchema = new Schema({
     trim: true,
     default: "Admin"
   } ,
+  sueldo:{
+    type: Number,
+    required: false,
+      trim: true,
+   },
   contrasena:{
      type: String,
     required: false,
@@ -576,13 +581,8 @@ tmiql:{
   required: false,
   trim: true,
   default: 'false'
-},  
-
-
-activo:{
-  type: Boolean,
-  default: true
 }
+
 }, {
   timestamps: true
 })
