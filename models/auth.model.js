@@ -155,6 +155,11 @@ const userSchema = new Schema({
     trim: true,
     default: "Admin"
   } ,
+  sueldo:{
+    type: Number,
+    required: false,
+      trim: true,
+   },
   contrasena:{
      type: String,
     required: false,
@@ -192,368 +197,430 @@ Servicio:[{
 tlp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tmp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmip:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tjp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tvp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tsp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tdp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tls:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tms:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmis:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tjs:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tvs:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tss:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tds:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tlt:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tmt:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmit:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tjt:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tvt:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tst:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tdt:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tlc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tmc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmic:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tjc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tvc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tsc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tdc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tlq:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmq:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmiq:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },     
 
 
 //turnos
 tlpl:{
-  type:Boolean,
+  type:String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tmpl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmipl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tjpl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tvpl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tspl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tdpl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tlsl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tmsl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmisl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tjsl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tvsl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tssl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tdsl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tltl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tmtl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmitl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tjtl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tvtl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tstl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tdtl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tlcl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tmcl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmicl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tjcl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tvcl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tscl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tdcl:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 tlql:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmql:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'NA'
 },
 
 tmiql:{
-  type: Boolean,
+  type: String,
   required: false,
-  trim: true
-},  
+  trim: true,
+  default: 'NA'
+},
 
-
-activo:{
-  type: Boolean,
-  default: true
+diasasistidos:{
+  type: Number,
+  required: false,
+  trim: true,
+  default: 0
 }
 }, {
   timestamps: true
 })
-
 module.exports = userSchema;
