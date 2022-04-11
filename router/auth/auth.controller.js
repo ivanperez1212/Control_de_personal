@@ -10,6 +10,7 @@ const _ = require("underscore");
 exports.createUser =  (req, res, next) => {
 
   const body = req.body;
+  
   const newUser = {
    
     nombre: body.nombre,
@@ -42,6 +43,7 @@ exports.createUser =  (req, res, next) => {
     pensionado:body.pensionado, 
     niveldeescolaridad:body.niveldeescolaridad,
     rol:body.rol,
+    sueldo:body.sueldo,
     contrasena: bcrypt.hashSync(body.contrasena),
  }
 
@@ -62,6 +64,7 @@ exports.createUser =  (req, res, next) => {
       accessToken: accessToken,
       expiresIn: expiresIn,
       idimage: user.idimage,
+      sueldo: user.sueldo,
       fechadeentrada:user.fechadeentrada
     }
     // response 
@@ -241,7 +244,8 @@ exports.updateUser = (req, res, next) => {
     'ddelentes',
     'pensionado',
     'niveldeescolaridad',
-    'rol'
+    'rol',
+    'sueldo'
   
     
 
@@ -286,6 +290,7 @@ exports.updateUser = (req, res, next) => {
         pensionado:user.pensionado, 
         niveldeescolaridad:user.niveldeescolaridad,
         rol:user.rol,
+        sueldo: user.sueldo,
         contrasena: user.contrasena,
         fileUrl: user.fileUrl
         }
