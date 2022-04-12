@@ -623,4 +623,4 @@ diasasistidos:{
 }, {
   timestamps: true
 })
-module.exports = userSchema
+module.exports = userSchema;
