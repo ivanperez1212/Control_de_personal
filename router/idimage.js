@@ -289,7 +289,7 @@ app.put('/idGuardia/:id',  (req, res)  => {
 app.put('/turno/:d',  (req, res)  => {
   let user = req.params.d;
   let body = req.body
-
+  console.log((this.body))
 
 image.findByIdAndUpdate(user, {
    tlp:body.tlp,
@@ -376,6 +376,26 @@ image.findByIdAndUpdate(user, {
 }, (err, user) => {
       if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
       console.log(err)
+     
+      res.status(200).send(  user )
+      
+   
+  });
+});
+
+
+app.put('/asistencia/:d',  (req, res)  => {
+  let user = req.params.d;
+  let body = req.body;
+  console.log(body)
+  
+image.findByIdAndUpdate(user, {
+
+  diasasistidos:body.diasasistidos
+   
+}, (err, user) => {
+      if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+      
      
       res.status(200).send(  user )
       
