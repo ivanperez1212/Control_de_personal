@@ -196,392 +196,435 @@ Servicio:[{
 tlp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 tmp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tmip:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tjp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tvp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tsp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tdp:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 tls:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 tms:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tmis:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tjs:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tvs:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tss:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tds:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 tlt:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 tmt:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tmit:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tjt:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tvt:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tst:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tdt:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 tlc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 tmc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tmic:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tjc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tvc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tsc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tdc:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 tlq:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tmq:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },
 
 tmiq:{
   type: String,
   required: false,
-  trim: true
+  trim: true,
+  default: 'D'
 },     
 
 
 //turnos
 tlpl:{
-  type:Boolean,
+  type:String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 tmpl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tmipl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tjpl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tvpl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tspl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tdpl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 tlsl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 tmsl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tmisl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tjsl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tvsl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tssl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tdsl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 tltl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 tmtl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tmitl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tjtl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tvtl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tstl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tdtl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 tlcl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 tmcl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tmicl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tjcl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tvcl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tscl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tdcl:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 tlql:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tmql:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
+  default: 'F'
 },
 
 tmiql:{
-  type: Boolean,
+  type: String,
   required: false,
   trim: true,
-  default: 'false'
-}
+  default: 'F'
+},
 
+diasasistidos:{
+  type: Number,
+  required: false,
+  trim: true,
+  default: 0
+},
+nsemana:{
+  type: Number,
+  required: false,
+  trim: true,
+  default: 0
+}
 }, {
   timestamps: true
 })

@@ -297,61 +297,14 @@ app.put('/idGuardia/:id',  (req, res)  => {
       );
 
 });
-// es para actualizar los turnos asignados
-app.put('/turno/:d',  (req, res)  => {
-  let user = req.params.d;
-  let body = req.body
 
-
-image.findByIdAndUpdate(user, {
-   tlp:body.tlp,
-   tmp:body.tmp,
-   tmip:body.tmip,
-   tjp:body.tjp,
-   tvp:body.tvp,
-   tsp:body.tsp,
-   tdp:body.tdp,
-   tls:body.tls,
-   tms:body.tms,
-   tmis:body.tmis,
-   tjs:body.tjs,
-   tvs:body.tvs,
-   tss:body.tss,
-   tds:body.tds,
-   tlt:body.tlt,
-   tmt:body.tmt,
-   tmit:body.tmit,
-   tjt:body.tjt,
-   tvt:body.tvt,
-   tst:body.tst,
-   tdt:body.tdt,
-   tlc:body.tlc,
-   tmc:body.tmc,
-   tmic:body.tmic,
-   tjc:body.tjc,
-   tvc:body.tvc,
-   tsc:body.tsc,
-   tdc:body.tdc,
-   tlq:body.tlq,
-   tmq:body.tmq,
-   tmiq:body.tmiq,
-   
-}, (err, user) => {
-      if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
-
-     
-      res.status(200).send(  user )
-   
-  });
-});
 
 // es para actualizar el pase de lista
 app.put('/paselista/:d',  (req, res)  => {
   let user = req.params.d;
   let body = req.body;
-  console.log(user);
-console.log(body);
 
+  console.log(body)
 image.findByIdAndUpdate(user, {
   tlpl: body.tlpl,
   tmpl: body.tmpl,
@@ -383,16 +336,50 @@ image.findByIdAndUpdate(user, {
   tdcl: body.tdcl,
   tlql: body.tlql,
   tmql: body.tmql,
-  tmiql: body.tmiql
+  tmiql: body.tmiql,
+  diasasistidos:body.diasasistidos,
+  nsemana: body.nsemana,
+  tlp: body.tlp,
+  tmp: body.tmp,
+  tmip: body.tmip,
+  tjp: body.tjp,
+  tvp: body.tvp,
+  tsp: body.tsp,
+  tdp: body.tdp,
+  tls: body.tls,
+  tms: body.tms,
+  tmis: body.tmis,
+  tjs: body.tjs,
+  tvs: body.tvs,
+  tss: body.tss,
+  tds: body.tds,
+  tlt: body.tlt,
+  tmt: body.tmt,
+  tmit: body.tmit,
+  tjt: body.tjt,
+  tvt: body.tvt,
+  tst: body.tst,
+  tdt: body.tdt,
+  tlc: body.tlc,
+  tmc: body.tmc,
+  tmic: body.tmic,
+  tjc: body.tjc,
+  tvc: body.tvc,
+  tsc: body.tsc,
+  tdc: body.tdc,
+  tlq: body.tlq,
+  tmq: body.tmq,
+  tmiq: body.tmiq
    
 }, (err, user) => {
       if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
-      console.log(err)
+ 
      
       res.status(200).send(  user )
       
    
   });
 });
+
 
 module.exports = app;
