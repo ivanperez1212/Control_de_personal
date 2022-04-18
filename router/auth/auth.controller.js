@@ -114,7 +114,7 @@ console.log(user._id)
  //TODO : SendEmail
      // send mail with defined transport object
      transporter.sendMail({
-      from: '"Petición de cambio de contraseña para Protexum" <ivanperez1l40@gmail.com>', // sender address
+      from: '"Petición de cambio de contraseña para Protexum" <Gabrielborbon@gmail.com>', // sender address
       to: user.correoelectronico, // list of receivers
       subject: "olvidar contraseña", // Subject line
       html:`<b>Hola ${user.nombre} ${user.apellidos}</b>

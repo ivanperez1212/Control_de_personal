@@ -103,7 +103,7 @@ app.get('/consultaservice', (req, res) => {
 
     Service.find({$or:[
         { 'activo': true}
-    ]}).populate("Guardias")
+    ]}).populate({path: 'Guardias', populate: { path:'prestamos'}})
         .exec((err, service) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
