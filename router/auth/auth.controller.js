@@ -103,7 +103,7 @@ console.log(user._id)
 // creas un token con las siguientes cosas 
      const token = jwt.sign({ id:user._id, correoelectronico: user.correoelectronico}, SECRET_KEYRESET, { expiresIn: '10m'})
    //  console.log('token:',token)
-    verificationLink = `http://localhost:8100/recuperarcontrasena/${token}`;
+    verificationLink = `https://ionic-proyect.herokuapp.com/${token}`;
 
     
     // este es para usar el id para agregarle el token en la base de datos
