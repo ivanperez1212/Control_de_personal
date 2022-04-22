@@ -103,7 +103,7 @@ console.log(user._id)
 // creas un token con las siguientes cosas 
      const token = jwt.sign({ id:user._id, correoelectronico: user.correoelectronico}, SECRET_KEYRESET, { expiresIn: '10m'})
    //  console.log('token:',token)
-    verificationLink = `https://ionic-proyect.herokuapp.com/${token}`;
+    verificationLink = `https://effervescent-valkyrie-5e6f3e.netlify.app/${token}`;
 
     
     // este es para usar el id para agregarle el token en la base de datos
@@ -114,7 +114,7 @@ console.log(user._id)
  //TODO : SendEmail
      // send mail with defined transport object
      transporter.sendMail({
-      from: '"Petición de cambio de contraseña para Protexum" <Gabrielborbon@gmail.com>', // sender address
+      from: '"Petición de cambio de contraseña para Protexum" <ivanperez1l40@gmail.com>', // sender address
       to: user.correoelectronico, // list of receivers
       subject: "olvidar contraseña", // Subject line
       html:`<b>Hola ${user.nombre} ${user.apellidos}</b>
