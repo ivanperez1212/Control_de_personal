@@ -43,7 +43,6 @@ exports.createUser =  (req, res, next) => {
     pensionado:body.pensionado, 
     niveldeescolaridad:body.niveldeescolaridad,
     rol:body.rol,
-    sueldo:body.sueldo,
     contrasena: bcrypt.hashSync(body.contrasena),
  }
 
@@ -64,7 +63,6 @@ exports.createUser =  (req, res, next) => {
       accessToken: accessToken,
       expiresIn: expiresIn,
       idimage: user.idimage,
-      sueldo: user.sueldo,
       fechadeentrada:user.fechadeentrada
     }
     // response 
@@ -103,7 +101,7 @@ console.log(user._id)
 // creas un token con las siguientes cosas 
      const token = jwt.sign({ id:user._id, correoelectronico: user.correoelectronico}, SECRET_KEYRESET, { expiresIn: '10m'})
    //  console.log('token:',token)
-    verificationLink = `http://localhost:8100/recuperarcontrasena/${token}`;
+    verificationLink = `https://effervescent-valkyrie-5e6f3e.netlify.app/${token}`;
 
     
     // este es para usar el id para agregarle el token en la base de datos
@@ -195,20 +193,7 @@ console.log(body)
 // respuesta correcta 
   return res.send( {message: 'password changed'})
  })
-
-
-
- 
-
-  
-
 })
- 
-
- 
-
-
-
 }
 
 
@@ -244,8 +229,7 @@ exports.updateUser = (req, res, next) => {
     'ddelentes',
     'pensionado',
     'niveldeescolaridad',
-    'rol',
-    'sueldo'
+    'rol'
   
     
 
@@ -290,7 +274,6 @@ exports.updateUser = (req, res, next) => {
         pensionado:user.pensionado, 
         niveldeescolaridad:user.niveldeescolaridad,
         rol:user.rol,
-        sueldo: user.sueldo,
         contrasena: user.contrasena,
         fileUrl: user.fileUrl
         }

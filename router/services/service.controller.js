@@ -34,7 +34,8 @@ exports.createService = async (req, res, next) => {
      dturnodoce:body.dturnodoce,
      dturnoNdoce:body.dturnoNdoce,
      dturnovienti:body.dturnovienti,
-     // asignar al usuario como dueño del carro
+     sueldo:body.sueldo,
+     // asignar al usuario como dueño del servicio
      cliente: idClient
   }
    Services.create(newService, (err, service) => {
@@ -72,7 +73,8 @@ exports.createService = async (req, res, next) => {
       dturnodoce:service.dturnodoce,
       dturnoNdoce:service.dturnoNdoce,
       dturnovienti:service.dturnovienti,
-      cliente: service.cliente
+      cliente: service.cliente,
+      sueldo:service.sueldo
    
  
      }
@@ -119,7 +121,8 @@ exports.updateService = (req, res, next) => {
     'sturnovienti',
     'dturnodoce',
     'dturnoNdoce',
-    'dturnovienti'
+    'dturnovienti',
+    'sueldo'
     ])
   
     Services.findByIdAndUpdate(idservice, body ,{ new: true, runValidators: true, context: 'query' },(err,service)=>{
@@ -157,6 +160,7 @@ exports.updateService = (req, res, next) => {
           dturnodoce:service.dturnodoce,
           dturnoNdoce:service.dturnoNdoce,
           dturnovienti:service.dturnovienti,
+          sueldo:service.sueldo
 
           }
           // response 

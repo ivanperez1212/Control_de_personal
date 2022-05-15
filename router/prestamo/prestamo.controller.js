@@ -5,27 +5,33 @@ exports.createPrestamo = async (req, res, next) => {
 
   const id = req.params.id
    const body = req.body;
+   console.log(body)
+    var montoapagar = body.montoprestado / body.numerodepagos;
+    var total = body.montoprestado
+    console.log(total)
    const newPrestamo = {
      nombre:body.nombre,
      montoprestado:body.montoprestado,
      fechadeprestamo:body.fechadeprestamo,
      numerodepagos:body.numerodepagos,
-     estado: body.estado,
+     montoapagar:montoapagar,
+     total:total,
      idusuario:id    
   
   }
    Prestamos.create(newPrestamo, (err, prestamo) => {
      
      if (err) return res.status(500).send('Server error' , err);
-      
+     
     
      const dataPrestamo = {
       id:prestamo.id,
       nombre:prestamo.nombre,
-      montoprestado:prestamo. montoprestado, 
+      montoprestado:prestamo.montoprestado, 
       fechadeprestamo:prestamo.fechadeprestamo, 
       numerodepagos:prestamo.numerodepagos,
-      estado:prestamo.prestamo,
+      montoapagar:prestamo.montoapagar,
+      total:prestamo.total,
       idusuario:prestamo.idusuario
      }
 
@@ -48,22 +54,24 @@ exports.updatePrestamo = (req, res, next) => {
     'montoprestado',
     'fechadeprestamo',
     'numerodepagos',
+    'total',
     
-  
     ])
-  
+
    Prestamos.findByIdAndUpdate(id, body ,{ new: true, runValidators: true, context: 'query' },(err,prestamo)=>{
       if (err) return res.status(500).send('Server error');
   
       if (!prestamo) res.status(500).send( {message:`error al actualizar ${err} `} )
-        
+        console.log(prestamo)
   
          const dataPrestamo = {
       id:prestamo.id,
       nombre:prestamo.nombre,
       montoprestado:prestamo. montoprestado, 
       fechadeprestamo:prestamo.fechadeprestamo, 
-      numerodepagos:prestamo.numerodepagos
+      numerodepagos:prestamo.numerodepagos,
+      total:prestamo.total,
+      updatedAt:prestamo.updatedAt
      }
           // response 
           res.send({ dataPrestamo });

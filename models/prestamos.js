@@ -21,6 +21,19 @@ const serviceSchema = new Schema({
         required: false,
         trim: true
     },
+    montoapagar:{
+        type:Number,
+        required: false,
+        trim: true
+    },
+    total:{
+        type:Number,
+        required: false,
+        trim: true,
+        default: 0
+   
+    },
+  
     idusuario:{
         type: Schema.Types.ObjectId,
         ref: 'User',
