@@ -170,7 +170,6 @@ const userSchema = new Schema({
     
     
   },
-
 prestamos:[{
   type: Schema.Types.ObjectId,
   ref: 'borrows',

@@ -155,7 +155,6 @@ const userSchema = new Schema({
     trim: true,
     default: "Admin"
   } ,
-
   contrasena:{
      type: String,
     required: false,
