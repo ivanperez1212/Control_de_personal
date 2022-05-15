@@ -37,11 +37,7 @@ const serviceSchema = new Schema({
     required: false,
     trim: true
   },
-  horariosguardias:{
-    type: String,
-    required: false,
-    trim: true
-  },
+ 
   jefedeservicio:{
     type: String,
     required: false,
@@ -169,6 +165,18 @@ Guardias:[{
   required: false,
   
 }],
+Turnos:[{
+  type: Schema.Types.ObjectId,
+  ref: 'turns',
+  required: false,
+ 
+}],
+
+sueldo:{
+  type: Number,
+  required: false,
+    trim: true,
+ },
   activo:{
     type: Boolean,
     default: true

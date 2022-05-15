@@ -7,10 +7,10 @@ serviceSchema.statics = {
     service.save(cb);
   },
   update: function (query,cb){
-    client.find(query,cb)
+    service.find(query,cb)
   },
   delete: function(query,cb){
-    client.find(query,cb)
+    service.find(query,cb)
   },
   obtener: function (query, cb) {
     this.find(query, cb)

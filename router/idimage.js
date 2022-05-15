@@ -4,7 +4,9 @@ const Client = require("../models/Client");
 const Equip =require("../models/equip")
 const _ = require("underscore");
 const Service = require("../models/Service");
-const Prestamo = require("../models/prestamos")
+const Prestamo = require("../models/prestamos");
+const Turn = require("../models/turnos");
+
 const app = express();
 // este se usa para metodos de consulta a la base de datos
 
@@ -13,7 +15,8 @@ const app = express();
 app.get('/consulta/:id', (req, res) => {
     const id = req.params.id
 
-    image.findById(id).populate("prestamos")
+    image.findById(id).populate( {path:'prestamos',match:{$or:[ { 'activo': true}
+  ]} })
         .exec((err, user) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
@@ -39,7 +42,8 @@ app.get('/consulta', (req, res) => {
 
     image.find({$or:[
         { 'activo': true}
-    ]}).populate("Servicio")
+    ]}).populate({path:'Servicio',match:{$or:[ { 'activo': true}
+  ]}})
         .exec((err, user) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
@@ -67,7 +71,8 @@ app.get('/consultaclients/:id', (req, res) => {
     const id = req.params.id
 
 
-    Client.findById(id).populate({path: 'servicios', populate: { path:'equiporecibido'}})
+    Client.findById(id).populate({path: 'servicios',match:{$or:[ { 'activo': true}
+  ]}, populate: { path:'equiporecibido'}})
         .exec((err, client) => {
             if (err)  return res.status(500).send( {message:`error al actualizar ${err} `} )
  
@@ -101,13 +106,14 @@ app.get('/consultaclients', (req, res) => {
 app.get('/consultaservice', (req, res) => {
   
 
-    Service.find({$or:[
-        { 'activo': true}
-    ]}).populate({path: 'Guardias', populate: { path:'prestamos'}})
-        .exec((err, service) => {
+    Service.find({$or:[ { 'activo': true}
+    ]}).populate({path: 'Guardias', match:{$or:[ { 'activo': true}
+  ]} ,populate:{ path:'prestamos', match:{$or:[{'activo':true}]}},populate:{ path:'Turnos' } })
+
+  .exec((err, service) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
-           
+        
         res.status(200).send( { service })
         });
 });
@@ -116,7 +122,8 @@ app.get('/consultaservice', (req, res) => {
 app.get('/consultaservice/:id', (req, res) => {
     const id = req.params.id
 
-    Service.findById(id).populate("equiporecibido").populate("Guardias")
+    Service.findById(id).populate("equiporecibido").populate("Turnos").populate({path:'Guardias',match:{$or:[ { 'activo': true}
+  ]}})
         .exec((err, service) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
 
@@ -124,7 +131,6 @@ app.get('/consultaservice/:id', (req, res) => {
         res.status(200).send( { service })
         });
 });
-
 
 
 // es el buscador de usuarios
@@ -268,9 +274,16 @@ app.put('/idservecio/:id',  (req, res)  => {
      
  }, (err, user) => {
         if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
-
-       
-        res.status(200).send( { user })
+        const dataUser = {
+          id: user.id,
+          nombre: user.nombre,
+          correoelectronico: user.correoelectronico,
+          rol: user.rol,
+          idimage: user.idimage,
+          sueldo: user.sueldo,
+          fechadeentrada:user.fechadeentrada
+        }
+        res.status(200).send( { dataUser })
      
     });
 });
@@ -297,79 +310,92 @@ app.put('/idGuardia/:id',  (req, res)  => {
       );
 
 });
+// agregar el id de guardias a turnos
+app.put('/idturnoaGuardia/:id',  (req, res)  => {
+  let id = req.params.id;
+  let body = req.body
+
+  image.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          Turnos:body.Turnos
+        },
+      },
+      { new: true, runValidators: true, context: "query" },
+      (err, proDB) => {
+        if (err) {
+          return res.status(400).send({message: 'some goes wrong', err})
+        }
+        return res.status(200).send({proDB})
+       
+      }
+    );
+
+});
+
+// agregar el id de servicios a turnos
+app.put('/idturnosaservicios/:id',  (req, res)  => {
+  let id = req.params.id;
+  let body = req.body
+ 
+  Service.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          Turnos:body.Turnos
+        },
+      },
+      { new: true, runValidators: true, context: "query" },
+      (err, proDB) => {
+        if (err) {
+          return res.status(400).send({message: 'some goes wrong', err})
+        }
+        return res.status(200).send({proDB})
+      }
+    );
+
+});
+
+// agregar el id de multas  a guardias
+app.put('/idmultasaguardias/:id',  (req, res)  => {
+  const id = req.params.id;
+  const body = req.body;
+  
+ console.log(body)
+image.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          multas:body.multas
+        },
+      },
+      { new: true, runValidators: true, context: "query" },
+      (err, multas) => {
+        if (err) {
+          return res.status(400).send({message: 'some goes wrong', err})
+          
+        }
+        console.log(multas)
+        return res.status(200).send({multas})
+       
+      }
+    );
+
+}); 
 
 
-// es para actualizar el pase de lista
-app.put('/paselista/:d',  (req, res)  => {
+
+//es para actualizar el monto prestado
+app.put('/actualizarmonto/:d',  (req, res)  => {
   let user = req.params.d;
   let body = req.body;
-
+ 
   console.log(body)
 image.findByIdAndUpdate(user, {
-  tlpl: body.tlpl,
-  tmpl: body.tmpl,
-  tmipl: body.tmipl,
-  tjpl: body.tjpl,
-  tvpl: body.tvpl,
-  tspl: body.tspl,
-  tdpl: body.tdpl,
-  tlsl: body.tlsl,
-  tmsl: body.tmsl,
-  tmisl: body.tmisl,
-  tjsl: body.tjsl,
-  tvsl: body.tvsl,
-  tssl: body.tssl,
-  tdsl: body.tdsl,
-  tltl: body.tltl,
-  tmtl: body.tmtl,
-  tmitl: body.tmitl,
-  tjtl: body.tjtl,
-  tvtl: body.tvtl,
-  tstl: body.tstl,
-  tdtl: body.tdtl,
-  tlcl: body.tlcl,
-  tmcl: body.tmcl,
-  tmicl: body.tmicl,
-  tjcl: body.tjcl,
-  tvcl: body.tvcl,
-  tscl: body.tscl,
-  tdcl: body.tdcl,
-  tlql: body.tlql,
-  tmql: body.tmql,
-  tmiql: body.tmiql,
-  diasasistidos:body.diasasistidos,
-  nsemana: body.nsemana,
-  tlp: body.tlp,
-  tmp: body.tmp,
-  tmip: body.tmip,
-  tjp: body.tjp,
-  tvp: body.tvp,
-  tsp: body.tsp,
-  tdp: body.tdp,
-  tls: body.tls,
-  tms: body.tms,
-  tmis: body.tmis,
-  tjs: body.tjs,
-  tvs: body.tvs,
-  tss: body.tss,
-  tds: body.tds,
-  tlt: body.tlt,
-  tmt: body.tmt,
-  tmit: body.tmit,
-  tjt: body.tjt,
-  tvt: body.tvt,
-  tst: body.tst,
-  tdt: body.tdt,
-  tlc: body.tlc,
-  tmc: body.tmc,
-  tmic: body.tmic,
-  tjc: body.tjc,
-  tvc: body.tvc,
-  tsc: body.tsc,
-  tdc: body.tdc,
-  tlq: body.tlq,
-  tmq: body.tmq,
-  tmiq: body.tmiq
+  
+  montoapagartotal:body.montoapagartotal
+ 
    
 }, (err, user) => {
       if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
@@ -381,5 +407,26 @@ image.findByIdAndUpdate(user, {
   });
 });
 
+
+//es para actualizar el monto de Multa
+app.put('/actualizarmontomulta/:d',  (req, res)  => {
+  let user = req.params.d;
+  let body = req.body;
+ 
+image.findByIdAndUpdate(user, {
+  
+  multaapagar:body.multaapagar,
+ 
+ 
+   
+}, (err, user) => {
+      if (err) res.status(500).send( {message:`error al actualizar ${err} `} )
+ 
+     
+      res.status(200).send(  user )
+      
+   
+  });
+});
 
 module.exports = app;

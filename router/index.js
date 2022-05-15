@@ -6,10 +6,12 @@ const clientRoutes = require('./client/client.routes');
 const serviceRoutes = require('./services/service.routes');
 const equipRoutes = require('./equipment/equip.routes');
 const prestamoRouter = require('./prestamo/prestamo.routes');
-
+const turnosRouter = require('./turns/turns.routes');
+const multasRouter = require('./multas/multas.routes');
 const app = express();
 const router = express.Router();
 const path = require('path');
+
 app.use("/idimage", require("./idimage"));
 app.use('/api', router);
 
@@ -18,6 +20,8 @@ clientRoutes(router);
 serviceRoutes(router)
 equipRoutes(router);
 prestamoRouter(router);
+turnosRouter(router);
+multasRouter(router);
 
 app.use(require('./uploadimage'))
 app.use(express.static(path.join(__dirname,'../upload')))

@@ -34,12 +34,12 @@ const userSchema = new Schema({
     trim: true
   } ,
   fechadeentrada:{
-    type: Date,
+    type: String,
     required: false,
     trim: true
   },
   fechadenacimiento:{
-    type: Date,
+    type: String,
     required: false,
     trim: true
   } ,
@@ -155,11 +155,7 @@ const userSchema = new Schema({
     trim: true,
     default: "Admin"
   } ,
-  sueldo:{
-    type: Number,
-    required: false,
-      trim: true,
-   },
+
   contrasena:{
      type: String,
     required: false,
@@ -175,11 +171,6 @@ const userSchema = new Schema({
     
     
   },
-  idequip:{
-    type: String,
-    required: false,
-    trim: true
-},
 prestamos:[{
   type: Schema.Types.ObjectId,
   ref: 'borrows',
@@ -192,441 +183,30 @@ Servicio:[{
   required: false,
  
 }],
-
-//turnos
-tlp:{
-  type: String,
+Turnos:[{
+  type: Schema.Types.ObjectId,
+  ref: 'turns',
   required: false,
-  trim: true,
-  default: 'D'
-},
-tmp:{
-  type: String,
+ 
+}],
+multas:[{
+  type: Schema.Types.ObjectId,
+  ref: 'multas',
   required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmip:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tjp:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tvp:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tsp:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tdp:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tls:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tms:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmis:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tjs:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tvs:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tss:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tds:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tlt:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tmt:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmit:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tjt:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tvt:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tst:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tdt:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tlc:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tmc:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmic:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tjc:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tvc:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tsc:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tdc:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tlq:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmq:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmiq:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},     
-
-
-//turnos
-tlpl:{
-  type:String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tmpl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmipl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tjpl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tvpl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tspl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tdpl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tlsl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tmsl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmisl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tjsl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tvsl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tssl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tdsl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tltl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tmtl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmitl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tjtl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tvtl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tstl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tdtl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tlcl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tmcl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmicl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tjcl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tvcl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tscl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tdcl:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-tlql:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmql:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-tmiql:{
-  type: String,
-  required: false,
-  trim: true,
-  default: 'D'
-},
-
-diasasistidos:{
+ 
+}],
+multaapagar:{
   type: Number,
   required: false,
   trim: true,
   default: 0
 },
-nsemana:{
+montoapagartotal:{
   type: Number,
   required: false,
   trim: true,
   default: 0
 }
-
 }, {
   timestamps: true
 })
